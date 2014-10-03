@@ -23,7 +23,7 @@ import javax.persistence.Table;
     ,schema="dbo"
     ,catalog="MAIL_SERVER"
 )
-public class Users  implements java.io.Serializable {
+public class Users  implements Serializable {
 
 
      private String accountId;

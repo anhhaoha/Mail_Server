@@ -7,7 +7,6 @@ import org.hibernate.Query;
 import org.hibernate.classic.Session;
 
 import vn.aptech.mail.Entities.Attachs;
-import vn.aptech.mail.Entities.Mail;
 import vn.aptech.mail.utils.HibernateUtil;
 
 public class Attachs_DAO {

@@ -48,8 +48,8 @@ public class Event_DAO {
 		try {
 			session.beginTransaction();
 			
-			Query query = session.createQuery("FROM Events e WHERE e.EventId = ? ");
-			query.setParameter(0, eventId);
+			Query query = session.createQuery("FROM Events e WHERE e.eventId = :eventId ");
+			query.setParameter("eventId", eventId);
 			
 			event = (Events) query.uniqueResult();
 			

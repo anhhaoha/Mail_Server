@@ -5,6 +5,7 @@ package vn.aptech.mail.Entities;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +21,7 @@ import javax.persistence.Table;
     ,schema="dbo"
     ,catalog="MAIL_SERVER"
 )
-public class Roles  implements java.io.Serializable {
+public class Roles  implements Serializable {
 
 
      private int roleId;

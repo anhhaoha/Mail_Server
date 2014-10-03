@@ -22,7 +22,7 @@ import org.hibernate.annotations.Parameter;
     ,schema="dbo"
     ,catalog="MAIL_SERVER"
 )
-public class Profiles  implements java.io.Serializable {
+public class Profiles  implements Serializable {
 
 
      private String accountId;

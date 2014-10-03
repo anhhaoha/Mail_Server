@@ -4,6 +4,7 @@ package vn.aptech.mail.Entities;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ import javax.persistence.TemporalType;
     ,schema="dbo"
     ,catalog="MAIL_SERVER"
 )
-public class Events  implements java.io.Serializable {
+public class Events  implements Serializable {
 
 
      private int eventId;
