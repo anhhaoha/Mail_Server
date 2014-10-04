@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Home Student</title>
+	<h:outputStylesheet name="././css/bootstrap.min.css" />
+	<h:outputStylesheet name="././css/bootstrap-reset.css" />
+	<h:outputStylesheet name="././css/jquery-ui-1.10.3.css" />
+	<h:outputStylesheet name="././css/font-awesome.css" />
+	<h:outputStylesheet name="././fonts/css/font-awesome.min.css" />
+	<h:outputStylesheet name="././css/demo_page.css" />
+	<h:outputStylesheet name="././css/demo_table.css" />
+	<h:outputStylesheet name="././css/DT_bootstrap.css" />
+	<h:outputStylesheet name="././css/style.css" />
+	<h:outputStylesheet name="././css/style-responsive.css" />
+	<h:outputStylesheet name="././fonts/fonts/fontawesome-webfont.woff" />
+</h:head>
+<h:body class="sticky-header">
+	<section>
+
+	<div class="main-content">
+
+		<div class="header-section">
+
+			<h:form class="searchform" action="index.html" method="post">
+				<input type="text" class="form-control" name="keyword"
+					placeholder="Search here..." />
+			</h:form>
+
+			<div class="menu-right">
+				<ul class="notification-menu">
+
+					<li><a href=""
+						class="btn btn-default dropdown-toggle info-number"
+						data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
+							class="badge">5</span>
+					</a>
+						<div class="dropdown-menu dropdown-menu-head pull-right">
+							<h5 class="title">You have 5 Mails</h5>
+							<ul class="dropdown-list normal-list">
+								<li class="new"><a href=""> <span class="thumb">
+											<h:graphicImage library="images" name="user1.png" />
+									</span> <span class="desc"> <span class="name">John Doe
+												<span class="badge badge-success">new</span>
+										</span> <span class="msg">Lorem ipsum dolor sit amet...</span>
+									</span>
+								</a></li>
+								<li><a href=""> <span class="thumb"><h:graphicImage
+												library="images" name="user2.png" /></span> <span class="desc">
+											<span class="name">Jonathan Smith</span> <span class="msg">Lorem
+												ipsum dolor sit amet...</span>
+									</span>
+								</a></li>
+								<li><a href=""> <span class="thumb"><h:graphicImage
+												library="images" name="user3.png" /></span> <span class="desc">
+											<span class="name">Jane Doe</span> <span class="msg">Lorem
+												ipsum dolor sit amet...</span>
+									</span>
+								</a></li>
+								<li><a href=""> <span class="thumb"> <h:graphicImage
+												library="images" name="user4.png" />
+									</span> <span class="desc"> <span class="name">Mark
+												Henry</span> <span class="msg">Lorem ipsum dolor sit amet...</span>
+									</span>
+								</a></li>
+								<li><a href=""> <span class="thumb"> <h:graphicImage
+												library="images" name="user5.png" />
+									</span> <span class="desc"> <span class="name">Jim Doe</span> <span
+											class="msg">Lorem ipsum dolor sit amet...</span>
+									</span>
+								</a></li>
+								<li class="new"><a href="">Read All Mails</a></li>
+							</ul>
+						</div></li>
+
+					<li><a href="" class="btn btn-default dropdown-toggle"
+						data-toggle="dropdown"> <h:graphicImage library="images"
+								name="user-avatar.png" /> John Doe <span class="caret"></span></a>
+						<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+							<li><a href=""><i class="fa fa-user"></i> Profile</a></li>
+							<li><a href=""><i class="fa fa-cog"></i> Settings</a></li>
+							<li><a href=""><i class="fa fa-sign-out"></i> Log Out</a></li>
+						</ul></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="wrapper">
+
+
+			<div class="mail-box">
+				<aside class="mail-nav mail-nav-bg-color"> <header
+					class="header">
+				<h4>Mailbox</h4>
+				</header>
+				<div class="mail-nav-body">
+					<div class="text-center">
+						<a class="btn btn-compose" href="ComposeMail.xhtml"> Compose
+							Mail </a>
+					</div>
+					<ul class="nav nav-pills nav-stacked mail-navigation">
+						<li class="active"><a href="Inbox.xhtml"> <i
+								class="fa fa-inbox"></i> Inbox <span
+								class="label label-danger pull-right inbox-notification">4</span>
+						</a></li>
+						<li><a href="ComposeMail.xhtml"> <i
+								class="fa fa-envelope-o"></i> Send Mail
+						</a></li>
+						<li><a href="ViewMail.xhtml"> <i
+								class="fa fa-certificate"></i> Important
+						</a></li>
+						<li><a href="#"> <i class="fa fa-file-text-o"></i> Drafts
+								<span class="label label-info pull-right inbox-notification">34</span></a></li>
+						<li><a href="#"> <i class="fa fa-trash-o"></i> Trash
+						</a></li>
+					</ul>
+
+
+				</div>
+
+				</aside>
+				<section class="mail-box-info"> <ui:insert name="content">
+
+				</ui:insert> </section>
+			</div>
+		</div>
+
+
+	</div>
+
+	</section>
+
+
+	<h:outputScript library="js" name="jquery-1.11.1.js" />
+	<h:outputScript library="js" name="jquery-1.10.2.min.js" />
+	<h:outputScript library="js" name="jquery-ui-1.9.2.custom.min.js" />
+	<h:outputScript library="js" name="jquery-migrate-1.2.1.min.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<h:outputScript library="js" name="modernizr.min.js" />
+	<h:outputScript library="js" name="jquery.nicescroll.js" />
+	<h:outputScript library="js" name="jquery.dataTables.js" />
+	<h:outputScript library="js" name="DT_bootstrap.js" />
+	<h:outputScript library="js" name="dynamic_table_init.js" />
+	<h:outputScript library="js" name="scripts.js" />
+</h:body>
+</h:html>
