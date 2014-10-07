@@ -48,8 +48,8 @@ public class Mail_DAO {
 		try {
 			session.beginTransaction();
 			
-			Query query = session.createQuery("FROM Mail m WHERE m.MailId = ? ");
-			query.setParameter(0, mailId);
+			Query query = session.createQuery("FROM Mail m WHERE m.MailId = :mailId ");
+			query.setParameter("mailId", mailId);
 			
 			mail = (Mail) query.uniqueResult();
 			
@@ -68,8 +68,8 @@ public class Mail_DAO {
 		try {
 			session.beginTransaction();
 			
-			Query query = session.createQuery("FROM Mail m WHERE m.AccountSendId = ? ");
-			query.setParameter(0, accountSendId);
+			Query query = session.createQuery("FROM Mail m WHERE m.AccountSendId = :accountSendId ");
+			query.setParameter("accountSendId", accountSendId);
 			
 			listMail = query.list();
 			
@@ -88,8 +88,8 @@ public class Mail_DAO {
 		try {
 			session.beginTransaction();
 			
-			Query query = session.createQuery("FROM Mail m WHERE m.AccountReceiveId = ? ");
-			query.setParameter(0, accountReceiveId);
+			Query query = session.createQuery("FROM Mail m WHERE m.AccountReceiveId = :accountReceiveId ");
+			query.setParameter("accountReceiveId", accountReceiveId);
 			
 			listMail = query.list();
 			
