@@ -3,6 +3,7 @@
 <h:html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Home Student</title>
@@ -28,15 +29,29 @@
 		href="/Mail_Server/resources/css/style-responsive.css" />
 	<link rel="stylesheet" type="text/css"
 		href="/Mail_Server/resources/css/style.css" />
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$(".uuuu").click(function() {
+	<style type="text/css">
+#cke_editor1 {
+	width: 1040px;
+	margin-left: 15px;
+}
 
-				alert("aaaaaaaaaaaaaaaaaaaaa");
+.uaa {
+	border-radius: 0;
+	color: #707278;
+	padding-left: 0;
+	padding-right: 0;
+	text-decoration: none;
+}
 
-			});
-		});
-	</script>
+.uaua {
+	margin-top: 5px;
+	margin-left: 20px;
+}
+
+.uaa:HOVER {
+	text-decoration: none;
+}
+</style>
 </h:head>
 <h:body class="sticky-header">
 	<section>
@@ -44,58 +59,16 @@
 	<div class="main-content">
 
 		<div class="header-section">
-
+			<h:graphicImage
+				style="width: 70px;height: 47px;float: left;margin-left: 92px;"
+				library="images" name="logotruong.jpg" />
 			<h:form class="searchform" action="index.html" method="post">
-				<input type="text" class="form-control" name="keyword"
-					placeholder="Search here..." />
+				<input style="margin-left: 107px; width: 500px;" type="text"
+					class="form-control" name="keyword" placeholder="Search here..." />
 			</h:form>
 
 			<div class="menu-right">
 				<ul class="notification-menu">
-
-					<li><a href=""
-						class="btn btn-default dropdown-toggle info-number"
-						data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
-							class="badge">5</span>
-					</a>
-						<div class="dropdown-menu dropdown-menu-head pull-right">
-							<h5 class="title">You have 5 Mails</h5>
-							<ul class="dropdown-list normal-list">
-								<li class="new"><a href=""> <span class="thumb">
-											<h:graphicImage library="images" name="user1.png" />
-									</span> <span class="desc"> <span class="name">John Doe
-												<span class="badge badge-success">new</span>
-										</span> <span class="msg">Lorem ipsum dolor sit amet...</span>
-									</span>
-								</a></li>
-								<li><a href=""> <span class="thumb"><h:graphicImage
-												library="images" name="user2.png" /></span> <span class="desc">
-											<span class="name">Jonathan Smith</span> <span class="msg">Lorem
-												ipsum dolor sit amet...</span>
-									</span>
-								</a></li>
-								<li><a href=""> <span class="thumb"><h:graphicImage
-												library="images" name="user3.png" /></span> <span class="desc">
-											<span class="name">Jane Doe</span> <span class="msg">Lorem
-												ipsum dolor sit amet...</span>
-									</span>
-								</a></li>
-								<li><a href=""> <span class="thumb"> <h:graphicImage
-												library="images" name="user4.png" />
-									</span> <span class="desc"> <span class="name">Mark
-												Henry</span> <span class="msg">Lorem ipsum dolor sit amet...</span>
-									</span>
-								</a></li>
-								<li><a href=""> <span class="thumb"> <h:graphicImage
-												library="images" name="user5.png" />
-									</span> <span class="desc"> <span class="name">Jim Doe</span> <span
-											class="msg">Lorem ipsum dolor sit amet...</span>
-									</span>
-								</a></li>
-								<li class="new"><a href="">Read All Mails</a></li>
-							</ul>
-						</div></li>
-
 					<li><a href="" class="btn btn-default dropdown-toggle"
 						data-toggle="dropdown"> <h:graphicImage library="images"
 								name="user-avatar.png" /> John Doe <span class="caret"></span></a>
@@ -117,7 +90,7 @@
 					class="header">
 				<h4>Mailbox</h4>
 				</header>
-				<div class="mail-nav-body">
+				<div style="overflow: hidden; height: 687px;" class="mail-nav-body">
 					<div class="text-center">
 						<a class="btn btn-compose"
 							href="/Mail_Server/template/Student/ComposeMail.xhtml">
@@ -130,12 +103,53 @@
 								class="label label-danger pull-right inbox-notification">4</span>
 						</a></li>
 						<li><a class="uuuu"
-							href="/Mail_Server/template/Student/ComposeMail.xhtml"> <i
+							href="/Mail_Server/template/Student/Sendmail.xhtml"> <i
 								class="fa fa-envelope-o"></i> Send Mail
 						</a></li>
 
 					</ul>
+					<ul class="nav nav-pills nav-stacked labels-info ">
 
+						<li>
+							<h5>buddy</h5>
+						</li>
+						<div style="overflow: scroll; width: 242px; height: 474px;">
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+
+
+						</div>
+					</ul>
 
 				</div>
 
@@ -144,8 +158,11 @@
 
 				</ui:insert> </section>
 			</div>
-		</div>
 
+		</div>
+		<div style="text-align: center; margin-top: -30px;">
+			<span style="position: relative; top: -3px;">©2014 Mail Server</span>
+		</div>
 
 	</div>
 	<div class="modal fade bs-example-modal-lg in" tabindex="-1"
@@ -164,13 +181,13 @@
 						Password!!!</h4>
 				</div>
 				<div class="modal-body">
-					<label>Mật khẩu cũ</label><br /> <input class="form-control"
-						type="password" /><br /> <label>Mật khẩu mới</label><br /> <input
-						class="form-control" type="password" /><br /> <label>Nhập
-						lại mật khẩu</label><br /> <input class="form-control" type="password" /><br />
+					<label>The old password</label><br /> <input class="form-control"
+						type="password" /><br /> <label>New password</label><br /> <input
+						class="form-control" type="password" /><br /> <label>Enter
+						the password</label><br /> <input class="form-control" type="password" /><br />
 					<br />
-					<button style="margin-left: 247px;" type="submit"
-						class="btn btn-primary ">Đổi mật khẩu</button>
+					<button style="margin-left: 218px;" type="submit"
+						class="btn btn-primary ">Change Password</button>
 				</div>
 				<!-- /.modal-content -->
 			</div>
@@ -192,4 +209,5 @@
 	<h:outputScript library="js" name="dynamic_table_init.js" />
 	<h:outputScript library="js" name="scripts.js" />
 </h:body>
+
 </h:html>

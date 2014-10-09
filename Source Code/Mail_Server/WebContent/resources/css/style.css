@@ -23,6 +23,7 @@ body {
 	line-height: 20px;
 	overflow-x: hidden;
 	font-size: 14px;
+	overflow: hidden;
 }
 
 input, select, textarea {
@@ -859,6 +860,7 @@ h5.left-nav-title {
 
 .sticky-header .main-content {
 	padding-top: 50px;
+	padding-bottom: 5px;
 }
 
 .sticky-header .menu-right {
@@ -1863,7 +1865,7 @@ ul.user-states li {
 }
 
 .rating span.star:hover:before, .rating span.star:hover:before, .rating span.star:hover 
-	~ span.star:before, .rating span.star:hover ~ span.star:before {
+	 ~ span.star:before, .rating span.star:hover ~ span.star:before {
 	content: "\f005";
 	color: #65CEA7;
 }
@@ -2714,16 +2716,111 @@ input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:fo
 	line-height: 1.16;
 }
 
-.spinner-buttons.btn-group-vertical>.btn:last-child:not (:first-child )
-	{
-	border-radius: 0 0 4px 0;
-	-webkit-border-radius: 0 0 4px 0;
-}
+.spinner-buttons
 
-.spinner-buttons.btn-group-vertical>.btn:first-child:not (:last-child )
-	{
-	border-radius: 0 4px 0 0;
-	-webkit-border-radius: 0 4px 0 0;
+
+.btn-group-vertical
+>
+.btn
+
+
+:last-child
+
+
+:not
+
+ 
+
+(
+:first-child
+
+ 
+
+)
+{
+border-radius
+
+
+:
+
+ 
+
+0
+0
+4
+px
+
+ 
+
+0;
+-webkit-border-radius
+
+
+:
+
+ 
+
+0
+0
+4
+px
+
+ 
+
+0;
+}
+.spinner-buttons
+
+
+.btn-group-vertical
+>
+.btn
+
+
+:first-child
+
+
+:not
+
+ 
+
+(
+:last-child
+
+ 
+
+)
+{
+border-radius
+
+
+:
+
+ 
+
+0
+4
+px
+
+ 
+
+0
+0;
+-webkit-border-radius
+
+
+:
+
+ 
+
+0
+4
+px
+
+ 
+
+0
+0;
 }
 
 /*----------------------------
