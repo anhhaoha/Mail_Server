@@ -25,8 +25,7 @@
 				</button>
 			</div>
 			<div class="btn-toolbar">
-				<h4 class="pull-left">AdminEx Bootstrap 3 Responsive Flat
-					Dashboard...</h4>
+				<h4 class="pull-left">#{mailBean.viewMailDetail.title}</h4>
 			</div>
 			</header>
 			<section class="mail-list">
@@ -34,60 +33,16 @@
 				<div class="row">
 					<div class="col-md-8">
 						<h:graphicImage library="images" name="user-avatar.png" />
-						<strong>ThemeBucket</strong> <span>[themebucket@gmail.com]</span>
-						to <strong>me</strong>
+						<strong>#{mailBean.viewMailDetail.usersByAccountSendId.displayName}</strong> <span>[#{mailBean.viewMailDetail.usersByAccountSendId.username}]</span>
+						to <strong>#{mailBean.viewMailDetail.usersByAccountReceiveId.displayName}</strong>
 					</div>
 					<div class="col-md-4">
-						<p class="date">4:15AM 04 April 2014</p>
+						<p class="date">#{mailBean.viewMailDetail.sendDate}</p>
 					</div>
 				</div>
 			</div>
 			<div class="view-mail">
-				<p>Donec ultrices faucibus rutrum. Phasellus sodales vulputate
-					urna, vel accumsan augue egestas ac. Donec vitae leo at sem
-					lobortis porttitor eu consequat risus. Mauris sed congue orci.
-					Donec ultrices faucibus rutrum. Phasellus sodales vulputate urna,
-					vel accumsan augue egestas ac. Donec vitae leo at sem lobortis
-					porttitor eu consequat risus. Mauris sed congue orci. Donec
-					ultrices faucibus rutrum. Phasellus sodales vulputate urna, vel
-					accumsan augue egestas ac. Donec vitae leo at sem lobortis
-					porttitor eu consequat risus. Mauris sed congue orci.</p>
-				<p>
-					Porttitor eu consequat risus. <a href="#">Mauris sed congue
-						orci. Donec ultrices faucibus rutrum</a>. Phasellus sodales vulputate
-					urna, vel accumsan augue egestas ac. Donec vitae leo at sem
-					lobortis porttitor eu consequat risus. Mauris sed congue orci.
-					Donec ultrices faucibus rutrum. Phasellus sodales vulputate urna,
-					vel accumsan augue egestas ac. Donec vitae leo at sem lobortis
-					porttitor eu consequat risus. Mauris sed congue orci.
-				</p>
-				<blockquote>
-					<em>Donec ultrices faucibus rutrum. Phasellus sodales
-						vulputate urna, vel accumsan augue egestas ac. Donec vitae leo at
-						sem lobortis porttitor eu consequat risus. Mauris sed congue orci.
-						Donec ultrices faucibus rutrum. Phasellus sodales vulputate urna,
-						vel accumsan augue egestas ac. Donec vitae leo at sem lobortis
-						porttitor eu consequat risus. Mauris sed congue orci. Donec
-						ultrices faucibus rutrum. Phasellus sodales vulputate urna, vel
-						accumsan augue egestas ac.<br />consequat risus. Mauris sed
-						congue orci. Donec ultrices faucibus rutrum. Phasellus sodales
-						vulputate urna, vel accumsan augue egestas ac. Donec vitae leo at
-						sem lobortis porttitor eu consequat risus. Mauris sed congue orci.
-						Donec ultrices faucibus rutrum. Phasellus sodales vulputate urna,
-						vel accumsan augue egestas ac.
-
-
-					</em>
-				</blockquote>
-
-				<p>
-					Sodales <a href="#">vulputate urna, vel accumsan augue egestas
-						ac</a>. Donec vitae leo at sem lobortis porttitor eu consequat risus.
-					Mauris sed congue orci. Donec ultrices faucibus rutrum. Phasellus
-					sodales vulputate urna, vel accumsan augue egestas ac. Donec vitae
-					leo at sem lobortis porttitor eu consequat risus. Mauris sed congue
-					orci.
-				</p>
+				#{mailBean.viewMailDetail.content}
 			</div>
 			<div class="attachment-mail">
 				<p>
@@ -116,6 +71,7 @@
 
 				</ul>
 			</div>
+			<!-- 
 			<div class="compose-btn pull-left">
 				<a href="mail_compose.html" class="btn btn-sm btn-primary"><i
 					class="fa fa-reply"></i> Reply</a>
@@ -132,7 +88,8 @@
 					data-placement="top" title="">
 					<i class="fa fa-trash-o"></i>
 				</button>
-			</div>
+			</div>  
+			-->
 			</section>
 		</ui:define>
 	</ui:composition>
