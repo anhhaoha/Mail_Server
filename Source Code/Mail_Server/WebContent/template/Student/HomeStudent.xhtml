@@ -102,7 +102,7 @@
 						<li><a class="uuuu"
 							href="/Mail_Server/template/Student/Inbox.xhtml"> <i
 								class="fa fa-inbox"></i> Inbox <span
-								class="label label-danger pull-right inbox-notification">4</span>
+								class="label label-danger pull-right inbox-notification">#{mailBean.countMailReceived}</span> 	
 						</a></li>
 						<li><a class="uuuu"
 							href="/Mail_Server/template/Student/Sendmail.xhtml"> <i
@@ -116,39 +116,12 @@
 							<h5>buddy</h5>
 						</li>
 						<div style="overflow: scroll; width: 242px; height: 474px;">
-							<li class="uaua"><a class="uaa" href=""> <i
-									style="padding-right: 10px;"
-									class="fa fa-comments text-success"></i> Jonathan Smith
-							</a></li>
-							<li class="uaua"><a class="uaa" href=""> <i
-									style="padding-right: 10px;"
-									class="fa fa-comments text-success"></i> Jonathan Smith
-							</a></li>
-							<li class="uaua"><a class="uaa" href=""> <i
-									style="padding-right: 10px;"
-									class="fa fa-comments text-success"></i> Jonathan Smith
-							</a></li>
-							<li class="uaua"><a class="uaa" href=""> <i
-									style="padding-right: 10px;"
-									class="fa fa-comments text-success"></i> Jonathan Smith
-							</a></li>
-							<li class="uaua"><a class="uaa" href=""> <i
-									style="padding-right: 10px;"
-									class="fa fa-comments text-success"></i> Jonathan Smith
-							</a></li>
-							<li class="uaua"><a class="uaa" href=""> <i
-									style="padding-right: 10px;"
-									class="fa fa-comments text-success"></i> Jonathan Smith
-							</a></li>
-							<li class="uaua"><a class="uaa" href=""> <i
-									style="padding-right: 10px;"
-									class="fa fa-comments text-success"></i> Jonathan Smith
-							</a></li>
-							<li class="uaua"><a class="uaa" href=""> <i
-									style="padding-right: 10px;"
-									class="fa fa-comments text-success"></i> Jonathan Smith
-							</a></li>
-
+							<ui:repeat var="lst" value="#{mailBean.viewSendMail}">
+								<li class="uaua"><a class="uaa" href="#"> <i
+										style="padding-right: 10px;"
+										class="fa fa-comments text-success"></i>#{lst.usersByAccountReceiveId.displayName}
+								</a></li>
+							</ui:repeat>
 
 						</div>
 					</ul>

@@ -6,7 +6,7 @@ import vn.aptech.mail.Entities.Mail;
 
 public class RepeatPaginator {
 
-	private static final int DEFAULT_RECORDS_NUMBER = 1;
+	private static final int DEFAULT_RECORDS_NUMBER = 10;
     private static final int DEFAULT_PAGE_INDEX = 1;
 
     private int records;

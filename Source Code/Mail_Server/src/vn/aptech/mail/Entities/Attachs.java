@@ -1,5 +1,5 @@
 package vn.aptech.mail.Entities;
-// Generated Oct 3, 2014 11:46:33 AM by Hibernate Tools 3.6.0
+// Generated Oct 13, 2014 3:31:18 PM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.Column;

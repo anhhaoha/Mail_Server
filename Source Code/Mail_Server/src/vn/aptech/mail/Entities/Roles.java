@@ -1,11 +1,10 @@
 package vn.aptech.mail.Entities;
-// Generated Oct 3, 2014 11:46:33 AM by Hibernate Tools 3.6.0
+// Generated Oct 13, 2014 3:31:18 PM by Hibernate Tools 3.6.0
 
 
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +20,7 @@ import javax.persistence.Table;
     ,schema="dbo"
     ,catalog="MAIL_SERVER"
 )
-public class Roles  implements Serializable {
+public class Roles  implements java.io.Serializable {
 
 
      private int roleId;

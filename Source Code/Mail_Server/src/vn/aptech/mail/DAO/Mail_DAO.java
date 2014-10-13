@@ -48,8 +48,8 @@ public class Mail_DAO {
 		try {
 			session.beginTransaction();
 			
-			Query query = session.createQuery("FROM Mail m WHERE m.MailId = ? ");
-			query.setParameter(0, mailId);
+			Query query = session.createQuery("FROM Mail m WHERE m.mailId = :mailId ");
+			query.setParameter("mailId", mailId);
 			
 			mail = (Mail) query.uniqueResult();
 			
@@ -68,8 +68,8 @@ public class Mail_DAO {
 		try {
 			session.beginTransaction();
 			
-			Query query = session.createQuery("FROM Mail m WHERE m.AccountSendId = ? ");
-			query.setParameter(0, accountSendId);
+			Query query = session.createQuery("FROM Mail m WHERE m.usersByAccountSendId.accountId = :accountSendId ");
+			query.setParameter("accountSendId", accountSendId);
 			
 			listMail = query.list();
 			
@@ -88,8 +88,8 @@ public class Mail_DAO {
 		try {
 			session.beginTransaction();
 			
-			Query query = session.createQuery("FROM Mail m WHERE m.AccountReceiveId = ? ");
-			query.setParameter(0, accountReceiveId);
+			Query query = session.createQuery("FROM Mail m WHERE m.usersByAccountReceiveId.accountId = :accountReceiveId ORDER BY m.sendDate DESC ");
+			query.setParameter("accountReceiveId", accountReceiveId);
 			
 			listMail = query.list();
 			
@@ -100,6 +100,27 @@ public class Mail_DAO {
 			session.close();
 		}
 		return listMail;
+	}
+	
+	public Long countMailReceived(String accountReceiveId) {
+		Long result = (long) 0;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			session.beginTransaction();
+			
+			Query query = session.createQuery("SELECT COUNT(m.mailId) FROM Mail m WHERE m.usersByAccountReceiveId.accountId = :accountReceiveId AND m.status = 0 ");
+			query.setParameter("accountReceiveId", accountReceiveId);
+			
+			Long a = (Long) query.uniqueResult();
+			result = a;
+			
+			session.getTransaction().commit();
+		}catch( Exception ex ){
+			ex.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return result;
 	}
 	
 	public boolean insertMail(Mail mail) {

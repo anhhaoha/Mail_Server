@@ -1,5 +1,5 @@
 package vn.aptech.mail.Entities;
-// Generated Oct 3, 2014 11:46:33 AM by Hibernate Tools 3.6.0
+// Generated Oct 13, 2014 3:31:18 PM by Hibernate Tools 3.6.0
 
 
 import java.io.Serializable;
@@ -31,6 +31,7 @@ public class Mail  implements java.io.Serializable {
      private int mailId;
      private Users usersByAccountSendId;
      private Users usersByAccountReceiveId;
+     private String cc;
      private String title;
      private String content;
      private Date sendDate;
@@ -51,10 +52,11 @@ public class Mail  implements java.io.Serializable {
         this.sendDate = sendDate;
         this.status = status;
     }
-    public Mail(int mailId, Users usersByAccountSendId, Users usersByAccountReceiveId, String title, String content, Date sendDate, Date readDate, boolean status, Set<Attachs> attachses) {
+    public Mail(int mailId, Users usersByAccountSendId, Users usersByAccountReceiveId, String cc, String title, String content, Date sendDate, Date readDate, boolean status, Set<Attachs> attachses) {
        this.mailId = mailId;
        this.usersByAccountSendId = usersByAccountSendId;
        this.usersByAccountReceiveId = usersByAccountReceiveId;
+       this.cc = cc;
        this.title = title;
        this.content = content;
        this.sendDate = sendDate;
@@ -75,7 +77,7 @@ public class Mail  implements java.io.Serializable {
         this.mailId = mailId;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="AccountSendId", nullable=false)
     public Users getUsersByAccountSendId() {
         return this.usersByAccountSendId;
@@ -85,7 +87,7 @@ public class Mail  implements java.io.Serializable {
         this.usersByAccountSendId = usersByAccountSendId;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="AccountReceiveId", nullable=false)
     public Users getUsersByAccountReceiveId() {
         return this.usersByAccountReceiveId;
@@ -93,6 +95,16 @@ public class Mail  implements java.io.Serializable {
     
     public void setUsersByAccountReceiveId(Users usersByAccountReceiveId) {
         this.usersByAccountReceiveId = usersByAccountReceiveId;
+    }
+
+    
+    @Column(name="Cc", length=60)
+    public String getCc() {
+        return this.cc;
+    }
+    
+    public void setCc(String cc) {
+        this.cc = cc;
     }
 
     
