@@ -5,7 +5,7 @@
 	version="3.0">
 	<display-name>Mail_Server</display-name>
 	<welcome-file-list>
-		<welcome-file>template/Student/Inbox.xhtml</welcome-file>
+		<welcome-file>template/Home/Index.xhtml</welcome-file>
 		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>default.html</welcome-file>
@@ -24,4 +24,8 @@
 	<listener>
 		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
 	</listener>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>hot-sneaks</param-value>
+	</context-param>
 </web-app>

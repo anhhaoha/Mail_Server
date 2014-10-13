@@ -75,7 +75,7 @@ public class Mail  implements java.io.Serializable {
         this.mailId = mailId;
     }
 
-@ManyToOne(fetch=FetchType.EAGER)
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="AccountSendId", nullable=false)
     public Users getUsersByAccountSendId() {
         return this.usersByAccountSendId;
@@ -85,7 +85,7 @@ public class Mail  implements java.io.Serializable {
         this.usersByAccountSendId = usersByAccountSendId;
     }
 
-@ManyToOne(fetch=FetchType.EAGER)
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="AccountReceiveId", nullable=false)
     public Users getUsersByAccountReceiveId() {
         return this.usersByAccountReceiveId;

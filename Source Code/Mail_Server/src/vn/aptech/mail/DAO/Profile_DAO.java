@@ -20,7 +20,7 @@ public class Profile_DAO {
 	{
 		
 	}
-	
+
 	public static Profile_DAO getInstance() {
 		return instance;
 	}

@@ -28,6 +28,31 @@
 		href="/Mail_Server/resources/css/style-responsive.css" />
 	<link rel="stylesheet" type="text/css"
 		href="/Mail_Server/resources/css/style.css" />
+	<style>
+.ui-datagrid .ui-paginator-top {
+	border-bottom: 0px none;
+	display: none;
+}
+
+.ui-paginator .ui-paginator-current, .ui-paginator .ui-paginator-rpp-options
+	{
+	margin-left: 1em;
+	margin-right: 1em;
+	background-image: none;
+	margin-top: 1px;
+}
+
+.label {
+	color: rgb(248, 14, 14);
+	font-size: 15px;
+	font-style: italic;
+}
+
+td, th {
+	padding: 0;
+	color: rgb(248, 14, 14);
+}
+</style>
 	<style type="text/css">
 #cke_editor1 {
 	width: 1040px;
@@ -70,6 +95,8 @@
 						data-toggle="dropdown"> <h:graphicImage library="images"
 								name="user-avatar.png" /> John Doe <span class="caret"></span></a>
 						<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+							<li><a data-toggle="modal" data-target=".changeprofile"><i
+									class="fa fa-users"></i> Change Profile</a></li>
 							<li><a data-toggle="modal"
 								data-target=".bs-example-modal-lg"><i class="fa fa-cog"></i>
 									Change Password</a></li>
@@ -101,8 +128,7 @@
 							<ul class="sub-menu-list" style="display: none;">
 								<li><a href="/Mail_Server/template/Staff/Inbox.xhtml">
 										Inbox</a></li>
-								<li><a
-									href="/Mail_Server/template/Staff/Sendmail.xhtml">
+								<li><a href="/Mail_Server/template/Staff/Sendmail.xhtml">
 										Send Mail</a></li>
 							</ul></li>
 
@@ -148,12 +174,16 @@
 						Password!!!</h4>
 				</div>
 				<div class="modal-body">
-					<label>The old password</label><br /> <input class="form-control"
-						type="password" /><br /> <label>New password</label><br /> <input
-						class="form-control" type="password" /><br /> <label>Enter
-						the password</label><br /> <input class="form-control" type="password" /><br />
-					<br />
-					<button style="margin-left: 218px;" type="submit"
+					<label>The old password</label><br />
+
+					<h:inputSecret styleClass="form-control"></h:inputSecret>
+
+					<br /> <label>New password</label><br />
+					<h:inputSecret styleClass="form-control"></h:inputSecret>
+					<br /> <label>Enter the password</label><br />
+					<h:inputSecret styleClass="form-control"></h:inputSecret>
+					<br /> <br />
+					<button style="margin-left: 227px;" type="submit"
 						class="btn btn-primary ">Change Password</button>
 				</div>
 				<!-- /.modal-content -->
@@ -162,6 +192,37 @@
 
 		</div>
 
+	</div>
+	<div class="modal fade changeprofile in" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<h:form>
+				<div style="border-radius: 5px; width: 400px; margin: 120px auto;"
+					class="modal-content">
+
+					<div
+						style="border-top-left-radius: 5px; border-top-right-radius: 5px"
+						class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myLargeModalLabel">Change
+							Profile!!!</h4>
+					</div>
+					<div class="modal-body">
+						<label>Display Name</label><br />
+						<h:inputText styleClass="form-control"></h:inputText>
+						<br /> <label>Email</label><br />
+						<h:inputText styleClass="form-control"></h:inputText>
+						<br /> <br />
+						<button style="margin-left: 248px;" type="submit"
+							class="btn btn-primary ">Change Profile</button>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</h:form>
+		</div>
 	</div>
 	</section>
 

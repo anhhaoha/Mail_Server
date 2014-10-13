@@ -63,8 +63,8 @@
 				style="width: 70px;height: 47px;float: left;margin-left: 92px;"
 				library="images" name="logotruong.jpg" />
 			<h:form class="searchform" action="index.html" method="post">
-				<input style="margin-left: 107px; width: 500px;" type="text"
-					class="form-control" name="keyword" placeholder="Search here..." />
+				<h:inputText style="margin-left: 107px; width: 500px;"
+					styleClass="form-control" placeholder="Search here..."></h:inputText>
 			</h:form>
 
 			<div class="menu-right">
@@ -73,6 +73,8 @@
 						data-toggle="dropdown"> <h:graphicImage library="images"
 								name="user-avatar.png" /> John Doe <span class="caret"></span></a>
 						<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+							<li><a data-toggle="modal" data-target=".changeprofile"><i
+									class="fa fa-users"></i> Change Profile</a></li>
 							<li><a data-toggle="modal"
 								data-target=".bs-example-modal-lg"><i class="fa fa-cog"></i>
 									Change Password</a></li>
@@ -100,7 +102,7 @@
 						<li><a class="uuuu"
 							href="/Mail_Server/template/Student/Inbox.xhtml"> <i
 								class="fa fa-inbox"></i> Inbox <span
-								class="label label-danger pull-right inbox-notification">#{mailBean.countMailReceived}</span>
+								class="label label-danger pull-right inbox-notification">4</span>
 						</a></li>
 						<li><a class="uuuu"
 							href="/Mail_Server/template/Student/Sendmail.xhtml"> <i
@@ -114,12 +116,39 @@
 							<h5>buddy</h5>
 						</li>
 						<div style="overflow: scroll; width: 242px; height: 474px;">
-							<ui:repeat var="lst" value="#{mailBean.viewSendMail}">
-								<li class="uaua"><a class="uaa" href="#"> <i
-										style="padding-right: 10px;"
-										class="fa fa-comments text-success"></i>#{lst.usersByAccountReceiveId.displayName}
-								</a></li>
-							</ui:repeat>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+							<li class="uaua"><a class="uaa" href=""> <i
+									style="padding-right: 10px;"
+									class="fa fa-comments text-success"></i> Jonathan Smith
+							</a></li>
+
 
 						</div>
 					</ul>
@@ -154,17 +183,50 @@
 						Password!!!</h4>
 				</div>
 				<div class="modal-body">
-					<label>The old password</label><br /> <input class="form-control"
-						type="password" /><br /> <label>New password</label><br /> <input
-						class="form-control" type="password" /><br /> <label>Enter
-						the password</label><br /> <input class="form-control" type="password" /><br />
-					<br />
-					<button style="margin-left: 218px;" type="submit"
-						class="btn btn-primary ">Change Password</button>
+					<label>The old password</label><br />
+					<h:inputSecret styleClass="form-control"></h:inputSecret>
+					<br /> <label>New password</label><br />
+					<h:inputSecret styleClass="form-control"></h:inputSecret>
+					<br /> <label>Enter the password</label><br />
+					<h:inputSecret styleClass="form-control"></h:inputSecret>
+					<br /> <br />
+					<button style="margin-left: 228px; margin-top: -10px;"
+						type="submit" class="btn btn-primary ">Change Password</button>
 				</div>
 				<!-- /.modal-content -->
 			</div>
 			<!-- /.modal-dialog -->
+		</div>
+	</div>
+	<div class="modal fade changeprofile in" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<h:form>
+				<div style="border-radius: 5px; width: 400px; margin: 120px auto;"
+					class="modal-content">
+
+					<div
+						style="border-top-left-radius: 5px; border-top-right-radius: 5px"
+						class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myLargeModalLabel">Change
+							Profile!!!</h4>
+					</div>
+					<div class="modal-body">
+						<label>Display Name</label><br />
+						<h:inputText styleClass="form-control"></h:inputText>
+						<br /> <label>Email</label><br />
+						<h:inputText styleClass="form-control"></h:inputText>
+						<br /> <br />
+						<button style="margin-left: 248px;" type="submit"
+							class="btn btn-primary ">Change Profile</button>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</h:form>
 		</div>
 	</div>
 	</section>

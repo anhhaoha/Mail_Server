@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inbox Student</title>
+</head>
+<body>
+	<ui:composition template="/template/Staff/HomeStaff.xhtml">
+		<ui:define name="content">
+			<header class="header">
+			<div class="btn-toolbar">
+				<h4 class="pull-left">All Student</h4>
+			</div>
+			</header>
+			<section class="mail-list"> <h:form id="form">
+				<p:dataGrid var="p" value="#{Profile.lsProfiles}" columns="3"
+					layout="grid" rows="12" paginator="true" id="profile"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="6,12,16">
+
+					<f:facet name="header">
+            INFORMATION STUDENTS
+        </f:facet>
+
+					<p:panel header="#{p.users}" style="text-align:center">
+						<h:panelGrid columns="1" style="width:100%">
+							<p:graphicImage name="WebContent/resources/images/#{p.picture}" />
+
+							<h:outputText value="#{p.fullName}" />
+							<p:commandLink update=":form:StudentDetail"
+								oncomplete="PF('StudentDetail').show()" title="View Detail">
+								<h:outputText styleClass="ui-icon ui-icon-search"
+									style="margin:0 auto;" />
+								<f:setPropertyActionListener value="#{u}"
+									target="#{dataGridView.selectedCar}" />
+							</p:commandLink>
+						</h:panelGrid>
+					</p:panel>
+
+				</p:dataGrid>
+
+				<p:dialog header="Student Info" widgetVar="StudentDetail" modal="true"
+					showEffect="fade" hideEffect="fade" resizable="false">
+					<p:outputPanel id="StudentDetail" style="text-align:center;">
+						<p:panelGrid columns="2"
+							rendered="#{not empty dataGridView.selectedCar}"
+							columnClasses="label,value">
+							<f:facet name="header">
+								<p:graphicImage
+									name="WebContent/resources/images/#{p.picture}" />
+							</f:facet>
+
+							<h:outputText value="Id:" />
+							<h:outputText value="#{dataGridView.selectedCar.id}" />
+
+							<h:outputText value="Year" />
+							<h:outputText value="#{dataGridView.selectedCar.year}" />
+
+							<h:outputText value="Color:" />
+							<h:outputText value="#{dataGridView.selectedCar.color}"
+								style="color:#{dataGridView.selectedCar.color}" />
+
+							<h:outputText value="Price" />
+							<h:outputText value="$#{dataGridView.selectedCar.price}" />
+						</p:panelGrid>
+					</p:outputPanel>
+				</p:dialog>
+			</h:form> </section>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
