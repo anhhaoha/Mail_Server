@@ -93,7 +93,7 @@ td, th {
 
 					<li><a href="" class="btn btn-default dropdown-toggle"
 						data-toggle="dropdown"> <h:graphicImage library="images"
-								name="user-avatar.png" /> John Doe <span class="caret"></span></a>
+								name="user-avatar.png" /> #{userBean.user.displayName} <span class="caret"></span></a>
 						<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
 							<li><a data-toggle="modal" data-target=".changeprofile"><i
 									class="fa fa-users"></i> Change Profile</a></li>
@@ -173,19 +173,21 @@ td, th {
 					<h4 class="modal-title" id="myLargeModalLabel">Change
 						Password!!!</h4>
 				</div>
+				<h:form id="changpass">
 				<div class="modal-body">
 					<label>The old password</label><br />
-
-					<h:inputSecret styleClass="form-control"></h:inputSecret>
-
+				<h:inputSecret styleClass="form-control" value="#{userBean.oldPass}"></h:inputSecret>
 					<br /> <label>New password</label><br />
-					<h:inputSecret styleClass="form-control"></h:inputSecret>
+					<h:inputSecret styleClass="form-control" value="#{userBean.user.password}"></h:inputSecret>
 					<br /> <label>Enter the password</label><br />
-					<h:inputSecret styleClass="form-control"></h:inputSecret>
-					<br /> <br />
-					<button style="margin-left: 227px;" type="submit"
-						class="btn btn-primary ">Change Password</button>
+						<h:inputSecret styleClass="form-control" value="#{userBean.enterPass}"></h:inputSecret>
+					<br /> 
+					<h:messages></h:messages>
+					<br />
+				
+					<h:commandButton action="#{userBean.update_User}" value="Change Password" styleClass="btn btn-primary" style="margin-left: 228px; margin-top: -10px;" />	
 				</div>
+				</h:form>
 				<!-- /.modal-content -->
 			</div>
 			<!-- /.modal-dialog -->
@@ -209,15 +211,17 @@ td, th {
 						<h4 class="modal-title" id="myLargeModalLabel">Change
 							Profile!!!</h4>
 					</div>
+					<h:form>
 					<div class="modal-body">
 						<label>Display Name</label><br />
-						<h:inputText styleClass="form-control"></h:inputText>
+						<h:inputText styleClass="form-control" value="#{userBean.user.displayName}"></h:inputText>
 						<br /> <label>Email</label><br />
-						<h:inputText styleClass="form-control"></h:inputText>
+						<h:inputText styleClass="form-control" value="#{userBean.user.email}"/>
 						<br /> <br />
-						<button style="margin-left: 248px;" type="submit"
-							class="btn btn-primary ">Change Profile</button>
+				
+					<h:commandButton action="#{userBean.changeProfile}" value="Change Profile" styleClass="btn btn-primary" style="margin-left: 248px;" />				
 					</div>
+					</h:form>
 					<!-- /.modal-content -->
 				</div>
 				<!-- /.modal-dialog -->

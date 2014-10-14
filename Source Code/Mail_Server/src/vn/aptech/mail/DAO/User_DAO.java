@@ -26,40 +26,42 @@ public class User_DAO {
 
 	}
 
-	public static void main(String[] args) {
-		List<Users> list = User_DAO.getInstance().findAllStudent();
-		System.out.println(list);
+	
 
-	}
-
-	public static Users login_Student(String username, String password) {
+	public  Users login_Student(Users u) {
+		  Users user = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction ts = (Transaction) session.beginTransaction();
+		  try {
+			  session.beginTransaction();
+		Query query = session.createQuery("from Users where username =:name and password =:pass");
+		query.setParameter("name", u.getUsername());
+		query.setParameter("pass", u.getPassword());
 
-		Query query = session
-				.createQuery("from Users where username = :name and password = :pass and RoleId=1003");
-		query.setParameter("name", username);
-		query.setParameter("pass", password);
-
-		Users u = (Users) query.uniqueResult();
+		user = (Users) query.uniqueResult();
 		session.getTransaction().commit();
-		return u;
-
+	} catch (Exception ex) {
+        ex.printStackTrace();
+        session.getTransaction().commit();
+    } finally {
+        session.close();
+    }
+		return user;
 	}
 
 	public List<Users> findAllStudent() {
 		List<Users> list = new ArrayList<Users>();
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		try {
+		try
+		{
 
-			session.beginTransaction();
+		session.beginTransaction();
 
-			Query query = session.createQuery(" from Users");
-			list = query.list();
-			session.getTransaction().commit();
-		} catch (Exception ex) {
+		Query query = session.createQuery(" from Users where roles=3");
+		list = query.list();
+		session.getTransaction().commit();
+		}catch( Exception ex ){
 			ex.printStackTrace();
-		} finally {
+		}finally{
 			session.close();
 		}
 		return list;
@@ -70,16 +72,17 @@ public class User_DAO {
 		List<Users> list = new ArrayList<Users>();
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		try {
+		try
+		{
 
-			session.beginTransaction();
+		session.beginTransaction();
 
-			Query query = session.createQuery(" from Users where roles=2");
-			list = query.list();
-			session.getTransaction().commit();
-		} catch (Exception ex) {
+		Query query = session.createQuery(" from Users where roles=2");
+		list = query.list();
+		session.getTransaction().commit();
+		}catch( Exception ex ){
 			ex.printStackTrace();
-		} finally {
+		}finally{
 			session.close();
 		}
 
@@ -87,60 +90,94 @@ public class User_DAO {
 
 	}
 
-	public static boolean insert_User(Users u) {
-
+	public  boolean insert_User(Users u) {
+		boolean insertResult;
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		try {
-			session.beginTransaction();
-
-			session.save(u);
-			session.getTransaction().commit();
-			return true;
-		} catch (Exception ex) {
+		try{
+		session.beginTransaction();
+		
+		u.setStatus(false);
+		session.save(u);
+		insertResult=true;
+		session.getTransaction().commit();
+	
+		
+		}catch( Exception ex ){
 			ex.printStackTrace();
-		} finally {
+			insertResult=false;
+		}finally{
 			session.close();
 		}
 		return false;
 
 	}
-
-	public static boolean update_User(Users u) {
-
+	
+	public boolean update_User(Users u) {
+		boolean updateResult = false;
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		try {
-			session.beginTransaction();
+		try
+		{
+		session.beginTransaction();
 
-			session.update(u);
-			session.getTransaction().commit();
-			return true;
-		} catch (Exception ex) {
+		session.update(u);
+		updateResult=true;
+		session.getTransaction().commit();
+		return true;
+		}catch( Exception ex ){
 			ex.printStackTrace();
-		} finally {
+			updateResult=false;
+		}finally{
 			session.close();
 		}
 		return false;
 	}
-
-	public static boolean finUserId(String AccountID) {
-
+	
+	public  Users findById(String AccountID)
+	{
+		
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		try {
-			session.beginTransaction();
+		try{
+		session.beginTransaction();
 
-			Query query = session
-					.createQuery(" from Users where accountId =: ID ");
-			query.setParameter("ID", AccountID);
-
-			session.getTransaction().commit();
-			return true;
-		} catch (Exception ex) {
+		Query query = session.createQuery(" from Users where accountId=:ID ");
+		query.setParameter("ID", AccountID);
+		
+		Users u = (Users) query.uniqueResult();
+		
+		session.getTransaction().commit();
+		return u;
+		}catch( Exception ex ){
 			ex.printStackTrace();
-		} finally {
+		}finally{
 			session.close();
 		}
-		return false;
+		return null;
 
 	}
+	
+	public  Users findIdByUser(String usernames)
+	{
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try{
+		session.beginTransaction();
+
+		Query query = session.createQuery(" from Users where username=:names ");
+		query.setParameter("names", usernames);
+		
+		Users u = (Users) query.uniqueResult();
+		
+		session.getTransaction().commit();
+		return u;
+		}catch( Exception ex ){
+			ex.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+
+	}
+	
+
 
 }

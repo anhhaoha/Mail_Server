@@ -1,6 +1,9 @@
 package vn.aptech.mail.DAO;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -128,7 +131,11 @@ public class Mail_DAO {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
-			
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
+			mail.setReadDate(date);
+			mail.setSendDate(date);
+			mail.setStatus(false);
 			session.save(mail);
 			insertResult = true;
 			

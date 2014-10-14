@@ -585,37 +585,44 @@ header {
 			</div>
 		</div>
 	</div>
+	<h:form>
+		<div class="modal fade" id="modal-signin" tabindex="-1" role="dialog"
+			aria-labelledby="modal-signin" aria-hidden="true"
+			style="display: none;">
+			<div style="margin-top: 130px" class="modal-dialog modal-sm">
+				<div style="width: 400px; color: #fed136;" class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h4 class="modal-title">Sign in</h4>
+					</div>
+					<div class="modal-body">
 
-	<div class="modal fade" id="modal-signin" tabindex="-1" role="dialog"
-		aria-labelledby="modal-signin" aria-hidden="true"
-		style="display: none;">
-		<div style="margin-top: 130px" class="modal-dialog modal-sm">
-			<div style="width: 400px; color: #fed136;" class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h4 class="modal-title">Sign in</h4>
-				</div>
-				<div class="modal-body">
-					<form role="form">
 						<div class="form-group">
+
 							<label for="emailAddress">Username :</label>
-							<h:inputText styleClass="form-control input-lg"></h:inputText>
+							<h:inputText styleClass="form-control input-lg"
+								value="#{userBean.user.username}"></h:inputText>
 						</div>
 						<div class="form-group">
 							<label for="password">Password :</label>
-							<h:inputSecret styleClass="form-control input-lg"></h:inputSecret>
+							<h:inputSecret styleClass="form-control input-lg"
+								value="#{userBean.user.password}"></h:inputSecret>
 						</div>
 
-					</form>
-				</div>
-				<div class="modal-footer">
-					<h:commandButton type="submit"
-						styleClass="btn btn-warning btn-block btn-lg" value="Sign in"></h:commandButton>
+					</div>
+
+					<div class="modal-footer">
+
+						<h:commandButton action="#{userBean.login_Student}"
+							styleClass="btn btn-warning btn-block btn-lg" value="Login" />
+
+					</div>
+
 				</div>
 			</div>
 		</div>
-	</div>
+	</h:form>
 	<!-- jQuery Version 1.11.0 -->
 	<h:outputScript library="js" name="jquery-1.11.1.js" />
 

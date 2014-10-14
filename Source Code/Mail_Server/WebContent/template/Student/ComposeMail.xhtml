@@ -4,7 +4,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ck="http://code.google.com/ck-jsf-editor">
+	xmlns:ck="http://code.google.com/ck-jsf-editor"
+	 xmlns:p="http://primefaces.org/ui"
+	>
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>ComposeMail Student</title>
@@ -22,9 +24,8 @@
 			<div class="compose-mail">
 				<h:form role="form-horizontal" method="post">
 					<div class="form-group">
-						<label for="to" class="">To:</label> <input type="text"
-							tabindex="1" id="to" class="form-control" />
-
+						<label for="to" class="">To:</label> 
+						<h:inputText value="#{mailBean.users.username}" styleClass="form-control" id="to" tabindex="1"/>
 						<div class="compose-options">
 							<a
 								onclick="$(this).hide(); $('#cc').parent().removeClass('hidden'); $('#cc').focus();"
@@ -35,8 +36,8 @@
 					</div>
 
 					<div class="form-group hidden">
-						<label for="cc" class="">Cc:</label> <input type="text"
-							tabindex="2" id="cc" class="form-control" />
+						<label for="cc" class="">Cc:</label>
+							<h:inputText value="" styleClass="form-control" tabindex="2" id="cc"/>
 					</div>
 
 					<div class="form-group hidden">
@@ -45,8 +46,8 @@
 					</div>
 
 					<div class="form-group">
-						<label for="subject" class="">Subject:</label> <input type="text"
-							tabindex="1" id="subject" class="form-control" />
+						<label for="subject" class="">Subject:</label>
+							<h:inputText value="#{mailBean.mail.title}" styleClass="form-control" tabindex="1" id="subject"/>
 					</div>
 
 				</h:form>
@@ -56,11 +57,11 @@
 				<script>
 					CKEDITOR.replace('editor1');
 				</script>
+				
 				<div style="margin-top: 30px; margin-right: 12px;"
 					class="compose-btn pull-right">
-					<button class="btn btn-primary btn-sm">
-						<i class="fa fa-check"></i> Send
-					</button>
+					<h:commandButton action="#{mailBean.insert_Mail}" styleClass="btn btn-primary btn-sm" value="Save" />
+				
 					<button class="btn btn-sm btn-default">
 						<i class="fa fa-times"></i> Delete
 					</button>

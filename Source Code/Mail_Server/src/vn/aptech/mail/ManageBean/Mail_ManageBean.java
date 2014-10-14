@@ -5,16 +5,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 import javax.faces.view.facelets.FaceletContext;
 
 import org.hibernate.tool.hbmlint.Detector;
 
 import vn.aptech.mail.DAO.Mail_DAO;
+import vn.aptech.mail.DAO.User_DAO;
 import vn.aptech.mail.Entities.Mail;
+import vn.aptech.mail.Entities.Users;
+import vn.aptech.mail.utils.HttpUtils;
 
+
+import com.ckeditor.*;
 @ManagedBean(name="mailBean")
 public class Mail_ManageBean {
 	
@@ -24,8 +33,16 @@ public class Mail_ManageBean {
 	private RepeatPaginator paginator;
 	private RepeatPaginator paginatorSendMail;
 	private Map<Long, Boolean> checked = new HashMap<Long, Boolean>();
+	private Users users;
 	
 	
+
+	public Users getUsers() {
+		return users;
+	}
+	public void setUsers(Users users) {
+		this.users = users;
+	}
 	public Map<Long, Boolean> getChecked() {
 		return checked;
 	}
@@ -67,6 +84,8 @@ public class Mail_ManageBean {
 		paginator = new RepeatPaginator(listMailInbox);
 		//count mail
 		countMailReceived = Mail_DAO.getInstance().countMailReceived("FAV63625");
+		users=new Users();
+		mail=new Mail();
 	}
 	
 		
@@ -127,7 +146,65 @@ public class Mail_ManageBean {
 		
 		return "Inbox";
 	}
+	public String insert_Mail()
+	{
+		
+		 String msg;
+		 
+		 
+		 
+		  String re=users.getUsername();
+//		  Users usergetid =new Users();
+		  Users usergetid=User_DAO.getInstance().findIdByUser(users.getUsername());
+		  
+		 
+		 Users ur=new Users();
+		 ur.setAccountId(usergetid.getAccountId());
+		 
+		users= (Users) HttpUtils.getFromSession("users");
+		Users u=new Users();	 
+		u.setAccountId(users.getAccountId());
+		
+		mail.setUsersByAccountSendId(u);
+		
+		mail.setUsersByAccountReceiveId(ur);
+		
+			 if(Mail_DAO.getInstance().insertMail(mail))
+				{
+				 
+					 msg = "Created Successfully!";
+		        }else{
+		             msg = "Error. Please check again!";
+		        
+				}
+				  FacesMessage massage = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+			      FacesContext.getCurrentInstance().addMessage(null, massage);
 	
+
+	      return null;
+	}
+	
+	
+	@FacesConverter(forClass=Users.class)
+	public class UserConverter implements Converter {
+
+	
+		@Override
+		public Object getAsObject(FacesContext facesContext, UIComponent arg1, String key) {
+			return User_DAO.getInstance().findById(key);
+			}
+
+		@Override
+		public String getAsString(FacesContext arg0, UIComponent arg1, Object value) {
+			// TODO Auto-generated method stub
+			Users u = (Users) value;
+			return ""+u.getAccountId();
+		}
+
+		
+		
+		
+	}
 //	public String getAbc() {
 //		System.out.println(mailSelected.length);
 //		return null;

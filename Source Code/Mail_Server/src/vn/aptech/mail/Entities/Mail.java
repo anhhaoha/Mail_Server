@@ -6,9 +6,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -40,6 +43,8 @@ public class Mail  implements java.io.Serializable {
      private Set<Attachs> attachses = new HashSet<Attachs>(0);
 
     public Mail() {
+    	usersByAccountSendId=new Users();
+    	usersByAccountReceiveId=new Users();
     }
 
 	
@@ -67,6 +72,7 @@ public class Mail  implements java.io.Serializable {
    
      @Id 
 
+     @GeneratedValue(strategy=GenerationType.IDENTITY)
     
     @Column(name="MailId", unique=true, nullable=false)
     public int getMailId() {

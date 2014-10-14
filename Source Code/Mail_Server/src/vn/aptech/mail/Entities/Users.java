@@ -38,6 +38,7 @@ public class Users  implements java.io.Serializable {
      private Profiles profiles;
 
     public Users() {
+    	roles=new Roles();
     }
 
 	

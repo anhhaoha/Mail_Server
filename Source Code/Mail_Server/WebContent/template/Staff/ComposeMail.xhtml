@@ -4,6 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ck="http://code.google.com/ck-jsf-editor">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -48,14 +49,12 @@
 						<label for="subject" class="">Subject:</label> <input type="text"
 							tabindex="1" id="subject" class="form-control" />
 					</div>
+					
+					<hr/>
+					<p:editor />
 
 				</h:form>
-				<hr />
-				<script src="//cdn.ckeditor.com/4.4.5/full/ckeditor.js"></script>
-				<textarea name="editor1"></textarea>
-				<script>
-					CKEDITOR.replace('editor1');
-				</script>
+
 				<div style="margin-top: 30px; margin-right: 12px;"
 					class="compose-btn pull-right">
 					<button class="btn btn-primary btn-sm">
