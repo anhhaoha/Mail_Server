@@ -7,8 +7,10 @@
 package vn.aptech.mail.utils;
 
 import java.util.Map;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 
 
@@ -18,23 +20,24 @@ import javax.faces.context.FacesContext;
  */
 public class HttpUtils {
 
-//    public static String getFullURL() {
-//        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-//        StringBuilder sb = new StringBuilder();
-//        sb.append(request.getScheme());
-//        sb.append("://");
-//        sb.append(request.getServerName());
-//        sb.append(":");
-//        sb.append(request.getServerPort());
-//        //sb.append("/");
-//        sb.append(request.getContextPath());
-//        //sb.append("/");
-//
-//        
-//        return sb.toString();
-//        
-//        
-//    }
+    public static String getFullURL() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        StringBuilder sb = new StringBuilder();
+        sb.append(request.getScheme());
+        sb.append("://");
+        sb.append(request.getServerName());
+        sb.append(":");
+        sb.append(request.getServerPort());
+        //sb.append("/");
+        sb.append(request.getContextPath());
+        sb.append("/");
+
+        
+        return sb.toString();
+        
+        
+    }
+    
     public static Object getFromSession(String name) {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         return sessionMap.get(name);

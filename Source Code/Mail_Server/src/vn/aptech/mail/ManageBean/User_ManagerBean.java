@@ -72,7 +72,7 @@ public class User_ManagerBean {
 			} else {
 				if (roleId == 3)
 
-					return "HomeStudent";
+					return "Inbox";
 
 			}
 
