@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <h:html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Home Student</title>
@@ -28,6 +29,70 @@
 		href="/Mail_Server/resources/css/style-responsive.css" />
 	<link rel="stylesheet" type="text/css"
 		href="/Mail_Server/resources/css/style.css" />
+	<style>
+.ui-widget-header {
+	background: #424f63 !important;
+	font-family: 'Open Sans', sans-serif !important;
+	color: white !important;
+}
+
+.ui-datagrid .ui-datagrid-header {
+	border-bottom: 0px none;
+	height: 50px;
+}
+
+td, th {
+	padding: 6px;
+	color: rgb(248, 14, 14);
+	font-family: 'Open Sans', sans-serif !important;
+}
+
+.ui-widget-overlay {
+	opacity: .80;
+	filter: Alpha(Opacity = 80);
+	background-color: rgba(0, 0, 0, 0.78) !important;
+}
+</style>
+	<style type="text/css">
+.ui-widget-overlay {
+	background-color: rgba(0, 0, 0, 0.78) !important;
+	opacity: .80;
+	filter: Alpha(Opacity = 80);
+	background: none;
+}
+
+.ui-datagrid .ui-paginator-top {
+	border-bottom: 0px none;
+	display: none;
+}
+
+.ui-panelgrid .ui-panelgrid-cell {
+	border-width: none;
+	border-style: none;
+	border-color: none;
+	padding: 4px 10px;
+	font-family: 'Open Sans', sans-serif !important;
+}
+
+.ui-paginator .ui-paginator-current, .ui-paginator .ui-paginator-rpp-options
+	{
+	margin-left: 1em;
+	margin-right: 1em;
+	background-image: none;
+	margin-top: 1px;
+}
+
+.label {
+	color: rgb(248, 14, 14);
+	font-size: 15px;
+	font-style: none;
+}
+
+td, th {
+	padding: 0;
+	color: rgb(248, 14, 14);
+}
+</style>
 	<style>
 .ui-datagrid .ui-paginator-top {
 	border-bottom: 0px none;
@@ -84,16 +149,22 @@ td, th {
 				style="width: 70px;height: 47px;float: left;margin-left: 92px;"
 				library="images" name="logotruong.jpg" />
 			<h:form class="searchform" action="index.html" method="post">
-				<input style="margin-left: 107px; width: 500px;" type="text"
-					class="form-control" name="keyword" placeholder="Search here..." />
+				<h:inputText style="margin-left: 107px; width: 400px;"
+					styleClass="form-control">
+				</h:inputText>
+				<h:commandButton style="width: 100px;"
+					styleClass="btn btn-danger btn-cons btn-add" value="Search">
+
+				</h:commandButton>
 			</h:form>
 
-			<div class="menu-right">
+			<div style="height: 50px;" class="menu-right">
 				<ul class="notification-menu">
 
 					<li><a href="" class="btn btn-default dropdown-toggle"
 						data-toggle="dropdown"> <h:graphicImage library="images"
-								name="user-avatar.png" /> #{userBean.user.displayName} <span class="caret"></span></a>
+								name="user-avatar.png" /> #{mailBean.users.displayName} <span
+							class="caret"></span></a>
 						<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
 							<li><a data-toggle="modal" data-target=".changeprofile"><i
 									class="fa fa-users"></i> Change Profile</a></li>
@@ -133,11 +204,11 @@ td, th {
 							</ul></li>
 
 						<li class="menu-list"><a href=""><i
-								class="fa fa-file-text"></i> <span>Extra Pages</span></a>
+								class="fa fa-file-text"></i> <span>Student Information</span></a>
 							<ul class="sub-menu-list">
-								<li><a href="profile.html"> Profile</a></li>
-								<li><a href="invoice.html"> Invoice</a></li>
-								<li><a href="pricing_table.html"> Pricing Table</a></li>
+								<li><a href="/Mail_Server/template/Staff/allStudent.xhtml">
+										All Student</a></li>
+							
 							</ul></li>
 
 
@@ -174,19 +245,24 @@ td, th {
 						Password!!!</h4>
 				</div>
 				<h:form id="changpass">
-				<div class="modal-body">
-					<label>The old password</label><br />
-				<h:inputSecret styleClass="form-control" value="#{userBean.oldPass}"></h:inputSecret>
-					<br /> <label>New password</label><br />
-					<h:inputSecret styleClass="form-control" value="#{userBean.user.password}"></h:inputSecret>
-					<br /> <label>Enter the password</label><br />
-						<h:inputSecret styleClass="form-control" value="#{userBean.enterPass}"></h:inputSecret>
-					<br /> 
-					<h:messages></h:messages>
-					<br />
-				
-					<h:commandButton action="#{userBean.update_User}" value="Change Password" styleClass="btn btn-primary" style="margin-left: 228px; margin-top: -10px;" />	
-				</div>
+					<div class="modal-body">
+						<label>The old password</label><br />
+						<h:inputSecret styleClass="form-control"
+							value="#{userBean.oldPass}"></h:inputSecret>
+						<br /> <label>New password</label><br />
+						<h:inputSecret styleClass="form-control"
+							value="#{userBean.user.password}"></h:inputSecret>
+						<br /> <label>Enter the password</label><br />
+						<h:inputSecret styleClass="form-control"
+							value="#{userBean.enterPass}"></h:inputSecret>
+						<br />
+						<h:messages></h:messages>
+						<br />
+
+						<h:commandButton action="#{userBean.update_User}"
+							value="Change Password" styleClass="btn btn-primary"
+							style="margin-left: 228px; margin-top: -10px;" />
+					</div>
 				</h:form>
 				<!-- /.modal-content -->
 			</div>
@@ -212,15 +288,19 @@ td, th {
 							Profile!!!</h4>
 					</div>
 					<h:form>
-					<div class="modal-body">
-						<label>Display Name</label><br />
-						<h:inputText styleClass="form-control" value="#{userBean.user.displayName}"></h:inputText>
-						<br /> <label>Email</label><br />
-						<h:inputText styleClass="form-control" value="#{userBean.user.email}"/>
-						<br /> <br />
-				
-					<h:commandButton action="#{userBean.changeProfile}" value="Change Profile" styleClass="btn btn-primary" style="margin-left: 248px;" />				
-					</div>
+						<div class="modal-body">
+							<label>Display Name</label><br />
+							<h:inputText styleClass="form-control"
+								value="#{userBean.user.displayName}"></h:inputText>
+							<br /> <label>Email</label><br />
+							<h:inputText styleClass="form-control"
+								value="#{userBean.user.email}" />
+							<br /> <br />
+
+							<h:commandButton action="#{userBean.changeProfile}"
+								value="Change Profile" styleClass="btn btn-primary"
+								style="margin-left: 248px;" />
+						</div>
 					</h:form>
 					<!-- /.modal-content -->
 				</div>

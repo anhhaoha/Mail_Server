@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <h:html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -63,22 +64,28 @@
 				style="width: 70px;height: 47px;float: left;margin-left: 92px;"
 				library="images" name="logotruong.jpg" />
 			<h:form class="searchform" action="index.html" method="post">
-				<h:inputText style="margin-left: 107px; width: 500px;"
-					styleClass="form-control" placeholder="Search here..."></h:inputText>
+				<h:inputText style="margin-left: 107px; width: 400px;"
+					styleClass="form-control" p:placeholder="Search here...">
+				</h:inputText>
+				<h:commandButton style="width: 100px;"
+					styleClass="btn btn-danger btn-cons btn-add" value="Search">
+
+				</h:commandButton>
 			</h:form>
 
 			<div class="menu-right">
 				<ul class="notification-menu">
 					<li><a href="" class="btn btn-default dropdown-toggle"
 						data-toggle="dropdown"> <h:graphicImage library="images"
-								name="user-avatar.png" /> #{mailBean.users.displayName} <span class="caret"></span></a>
+								name="user-avatar.png" /> #{mailBean.users.displayName} <span
+							class="caret"></span></a>
 						<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
 							<li><a data-toggle="modal" data-target=".changeprofile"><i
 									class="fa fa-users"></i> Change Profile</a></li>
 							<li><a data-toggle="modal"
 								data-target=".bs-example-modal-lg"><i class="fa fa-cog"></i>
 									Change Password</a></li>
-							<li><i class="fa fa-sign-out"></i> Log Out</li>
+							<li><a href=""><i class="fa fa-sign-out"></i> Log Out</a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -102,7 +109,7 @@
 						<li><a class="uuuu"
 							href="/Mail_Server/template/Student/Inbox.xhtml"> <i
 								class="fa fa-inbox"></i> Inbox <span
-								class="label label-danger pull-right inbox-notification">#{mailBean.countMailReceived}</span> 	
+								class="label label-danger pull-right inbox-notification">#{mailBean.countMailReceived}</span>
 						</a></li>
 						<li><a class="uuuu"
 							href="/Mail_Server/template/Student/Sendmail.xhtml"> <i
@@ -156,19 +163,24 @@
 						Password!!!</h4>
 				</div>
 				<h:form id="changpass">
-				<div class="modal-body">
-					<label>The old password</label><br />
-				<h:inputSecret styleClass="form-control" value="#{userBean.oldPass}"></h:inputSecret>
-					<br /> <label>New password</label><br />
-					<h:inputSecret styleClass="form-control" value="#{userBean.user.password}"></h:inputSecret>
-					<br /> <label>Enter the password</label><br />
-						<h:inputSecret styleClass="form-control" value="#{userBean.enterPass}"></h:inputSecret>
-					<br /> 
-					<h:messages></h:messages>
-					<br />
-				
-					<h:commandButton action="#{userBean.update_User}" value="Change Password" styleClass="btn btn-primary" style="margin-left: 228px; margin-top: -10px;" />	
-				</div>
+					<div class="modal-body">
+						<label>The old password</label><br />
+						<h:inputSecret styleClass="form-control"
+							value="#{userBean.oldPass}"></h:inputSecret>
+						<br /> <label>New password</label><br />
+						<h:inputSecret styleClass="form-control"
+							value="#{userBean.user.password}"></h:inputSecret>
+						<br /> <label>Enter the password</label><br />
+						<h:inputSecret styleClass="form-control"
+							value="#{userBean.enterPass}"></h:inputSecret>
+						<br />
+						<h:messages></h:messages>
+						<br />
+
+						<h:commandButton action="#{userBean.update_User}"
+							value="Change Password" styleClass="btn btn-primary"
+							style="margin-left: 228px; margin-top: -10px;" />
+					</div>
 				</h:form>
 				<!-- /.modal-content -->
 			</div>
@@ -192,15 +204,19 @@
 							Profile!!!</h4>
 					</div>
 					<h:form>
-					<div class="modal-body">
-						<label>Display Name</label><br />
-						<h:inputText styleClass="form-control" value="#{userBean.user.displayName}"></h:inputText>
-						<br /> <label>Email</label><br />
-						<h:inputText styleClass="form-control" value="#{userBean.user.email}"/>
-						<br /> <br />
-				
-					<h:commandButton action="#{userBean.changeProfile}" value="Change Profile" styleClass="btn btn-primary" style="margin-left: 248px;" />				
-					</div>
+						<div class="modal-body">
+							<label>Display Name</label><br />
+							<h:inputText styleClass="form-control"
+								value="#{userBean.user.displayName}"></h:inputText>
+							<br /> <label>Email</label><br />
+							<h:inputText styleClass="form-control"
+								value="#{userBean.user.email}" />
+							<br /> <br />
+
+							<h:commandButton action="#{userBean.changeProfile}"
+								value="Change Profile" styleClass="btn btn-primary"
+								style="margin-left: 248px;" />
+						</div>
 					</h:form>
 					<!-- /.modal-content -->
 				</div>

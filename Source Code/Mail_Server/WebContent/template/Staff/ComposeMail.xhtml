@@ -4,8 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ck="http://code.google.com/ck-jsf-editor">
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>ComposeMail Student</title>
@@ -51,13 +50,16 @@
 					</div>
 					
 					<hr/>
-					<p:editor />
+					<p:editor></p:editor>
 
 				</h:form>
 
 				<div style="margin-top: 30px; margin-right: 12px;"
 					class="compose-btn pull-right">
-					<button class="btn btn-primary btn-sm">
+					<h:form>
+						<h:commandButton styleClass="btn btn-primary btn-sm" value="Send"></h:commandButton>
+					</h:form>
+					<button class="">
 						<i class="fa fa-check"></i> Send
 					</button>
 					<button class="btn btn-sm btn-default">

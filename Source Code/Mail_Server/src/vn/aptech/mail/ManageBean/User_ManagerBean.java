@@ -67,7 +67,7 @@ public class User_ManagerBean {
 
 			if (roleId == 2) {
 
-				return "template/Staff/HomeStaff";
+				return "../Staff/Inbox.xhtml";
 
 			} else {
 				if (roleId == 3)

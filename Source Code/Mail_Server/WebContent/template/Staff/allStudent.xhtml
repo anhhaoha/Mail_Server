@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Inbox Student</title>
+
 </head>
 <body>
 	<ui:composition template="/template/Staff/HomeStaff.xhtml">
@@ -19,54 +20,52 @@
 			</header>
 			<section class="mail-list"> <h:form id="form">
 				<p:dataGrid var="p" value="#{Profile.lsProfiles}" columns="3"
-					layout="grid" rows="12" paginator="true" id="profile"
-					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="6,12,16">
+					layout="grid" rows="6" paginator="true" id="profile"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 					<f:facet name="header">
-            INFORMATION STUDENTS
-        </f:facet>
+						<span>INFORMATION STUDENTS</span>
 
-					<p:panel header="#{p.users}" style="text-align:center">
+					</f:facet>
+
+					<p:panel header="#{p.accountId}" style="text-align:center">
 						<h:panelGrid columns="1" style="width:100%">
-							<p:graphicImage name="WebContent/resources/images/#{p.picture}" />
+							<p:graphicImage library="images" name="#{p.picture}" />
 
 							<h:outputText value="#{p.fullName}" />
 							<p:commandLink update=":form:StudentDetail"
-								oncomplete="PF('StudentDetail').show()" title="View Detail">
+								oncomplete="PF('StudentDetail').show()" title="View Student">
 								<h:outputText styleClass="ui-icon ui-icon-search"
 									style="margin:0 auto;" />
-								<f:setPropertyActionListener value="#{u}"
-									target="#{dataGridView.selectedCar}" />
+								<f:setPropertyActionListener value="#{p}"
+									target="#{Profile.selectedP}" />
 							</p:commandLink>
 						</h:panelGrid>
 					</p:panel>
 
 				</p:dataGrid>
 
-				<p:dialog header="Student Info" widgetVar="StudentDetail" modal="true"
-					showEffect="fade" hideEffect="fade" resizable="false">
+				<p:dialog header="Student Info" widgetVar="StudentDetail"
+					modal="true" showEffect="fade" hideEffect="fade" resizable="false">
 					<p:outputPanel id="StudentDetail" style="text-align:center;">
-						<p:panelGrid columns="2"
-							rendered="#{not empty dataGridView.selectedCar}"
+						<p:panelGrid columns="2" rendered="#{not empty Profile.selectedP}"
 							columnClasses="label,value">
-							<f:facet name="header">
-								<p:graphicImage
-									name="WebContent/resources/images/#{p.picture}" />
+							<f:facet style="padding: 0px;" name="header">
+								<p:graphicImage style="width: 100%;height: 200px;padding: 0px;"
+									library="images" name="#{Profile.selectedP.picture}" />
 							</f:facet>
 
-							<h:outputText value="Id:" />
-							<h:outputText value="#{dataGridView.selectedCar.id}" />
+							<h:outputText value="Id Student   : " />
+							<h:outputText value="#{Profile.selectedP.accountId}" />
 
-							<h:outputText value="Year" />
-							<h:outputText value="#{dataGridView.selectedCar.year}" />
+							<h:outputText value="Name    :" />
+							<h:outputText value="#{Profile.selectedP.fullName}" />
 
-							<h:outputText value="Color:" />
-							<h:outputText value="#{dataGridView.selectedCar.color}"
-								style="color:#{dataGridView.selectedCar.color}" />
+							<h:outputText value="Phone    :" />
+							<h:outputText value="#{Profile.selectedP.phone}" />
 
-							<h:outputText value="Price" />
-							<h:outputText value="$#{dataGridView.selectedCar.price}" />
+							<h:outputText value="Address   : " />
+							<h:outputText value="#{Profile.selectedP.address}" />
 						</p:panelGrid>
 					</p:outputPanel>
 				</p:dialog>

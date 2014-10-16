@@ -16,22 +16,27 @@
 				<header class="header">
 				<div class="btn-group pull-right">
 					<h:outputText
+						style="margin-top: 7px;font-size: 15px;margin-right: 15px;float:left"
 						value="#{mailBean.paginator.pageIndex} / #{mailBean.paginator.pages}" />
-					<h:commandButton class="btn btn-sm btn-primary"
-						action="#{ mailBean.paginator.prev()}">
-						<i class="fa fa-chevron-left"></i>
+					<h:commandButton style="border-radius: 3px;margin-right: 5px;"
+						value="&lsaquo;" class="btn btn-sm btn-primary"
+						action="#{mailBean.paginator.prev()}">
+
 					</h:commandButton>
-					<h:commandButton class="btn btn-sm btn-primary"
+					<h:commandButton style="border-radius: 3px;" value="&rsaquo;"
+						class="btn btn-sm btn-primary"
 						action="#{ mailBean.paginator.next()}">
-						<i class="fa fa-chevron-right"></i>
 					</h:commandButton>
 
 				</div>
 				<div class="btn-toolbar">
 					<div class="btn-group">
-						<button class="btn btn-sm btn-primary">
+						<button style="border-radius: 3px;" class="btn btn-sm btn-primary">
 							<i class="fa fa-refresh"></i>
 						</button>
+							<h:commandButton style="margin-left: 13px;border-radius: 3px;"
+								styleClass="btn btn-sm btn-primary" value="Delete"
+								action="#{mailBean.getDeleteMail}" />
 					</div>
 
 				</div>
@@ -52,9 +57,9 @@
 							</h:column>
 							<h:column>
 								<a class="" href="ViewMail.xhtml?id=#{lst.mailId}"> <strong>#{lst.usersByAccountSendId.displayName}</strong>
-									<span>- #{lst.title} </span> 
-									<c:if test="${lst.status eq false}">
-											<span class="label label-sm btn-success">#{lst.status}-new
+									<span>- #{lst.title} </span> <c:if
+										test="${lst.status eq false}">
+										<span class="label label-sm btn-success">#{lst.status}-new
 										</span>
 									</c:if>
 								</a>
@@ -64,7 +69,7 @@
 							</h:column>
 
 						</h:dataTable>
-						<h:commandButton value="Delete" action="#{mailBean.getDeleteMail}" />
+
 					</c:otherwise>
 				</ul>
 				</section>

@@ -15,14 +15,19 @@
 			<header class="header">
 			<div class="btn-group pull-right">
 				<h:form>
-					<h:outputText value="#{mailBean.paginatorSendMail.pageIndex} / #{mailBean.paginatorSendMail.pages}"/>
-					<h:commandButton class="btn btn-sm btn-primary" action="#{ mailBean.paginatorSendMail.prev()}">
-						<i class="fa fa-chevron-left"></i>
+					<h:outputText
+						style="margin-right: 10px;font-size: 15px;position: relative;top: 3px;"
+						value="#{mailBean.paginatorSendMail.pageIndex} / #{mailBean.paginatorSendMail.pages}" />
+					<h:commandButton style="margin-right: 5px;" value="&lsaquo;"
+						class="btn btn-sm btn-primary"
+						action="#{mailBean.paginatorSendMail.prev()}">
+
 					</h:commandButton>
-					<h:commandButton class="btn btn-sm btn-primary" action="#{ mailBean.paginatorSendMail.next()}">
-						<i class="fa fa-chevron-right"></i>
+					<h:commandButton value="&rsaquo;" class="btn btn-sm btn-primary"
+						action="#{mailBean.paginatorSendMail.next()}">
+
 					</h:commandButton>
-					<h:outputText value="#{mailBean.paginatorSendMail.pageIndex}"/>
+
 				</h:form>
 			</div>
 			<div class="btn-toolbar">
@@ -31,26 +36,18 @@
 						<i class="fa fa-refresh"></i>
 					</button>
 				</div>
-				<div class="btn-group select">
-					<button data-toggle="dropdown"
-						class="btn btn-primary btn-sm dropdown-toggle">
-						<span style="width: 70px;" class="dropdown-label">Filter</span> <span
-							class="caret"></span>
-					</button>
-					<ul class="dropdown-menu text-left text-sm">
-						<li><a href="#">Read</a></li>
-						<li><a href="#">Unread</a></li>
-						<li><a href="#">Starred</a></li>
-						<li><a href="#">Unstarred</a></li>
-					</ul>
-				</div>
+				<h:form>
+					<h:commandButton style="margin-left: 13px;border-radius: 3px;"
+						styleClass="btn btn-sm btn-primary" value="Delete"
+						action="#{mailBean.getDeleteMail}" />
+				</h:form>
 
 			</div>
 
 			</header>
-			<section class="mail-list">			
+			<section class="mail-list">
 			<ul class="list-group ">
-				
+
 				<c:if test="not #{ mailBean.viewSendMail }">
 					<h:outputText value="khong co mail"></h:outputText>
 				</c:if>
@@ -60,16 +57,15 @@
 								<input type="checkbox" />
 						</span>To: <a class="" href="ViewMail.xhtml?id=#{lst.mailId}"> <small
 								class="pull-right text-muted">#{lst.sendDate}</small> <strong>#{lst.usersByAccountReceiveId.displayName}</strong>
-								<span>#{lst.title} - </span> 
-								<c:if test="#{lst.status == true}">
+								<span>#{lst.title} - </span> <c:if test="#{lst.status == true}">
 									<span class="label label-sm btn-success">new</span>
-								</c:if>								 
-								<br /> <p>#{lst.content}</p>
-								
+								</c:if> <br />
+								<p>#{lst.content}</p>
+
 						</a></li>
 					</ui:repeat>
 				</c:otherwise>
-				
+
 			</ul>
 			</section>
 		</ui:define>

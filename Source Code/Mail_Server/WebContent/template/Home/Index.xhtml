@@ -4,7 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Trang Chu</title>
+	<title>Home</title>
 	<link rel="stylesheet" type="text/css"
 		href="/Mail_Server/resources/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css"
@@ -33,7 +33,7 @@ header {
 	text-align: center;
 	color: #fff;
 	background-attachment: scroll;
-	background-image: url("../img/banner.jpg");
+	background-image: url("/Mail_Server/template/img/banner.jpg");
 	background-position: center center;
 	background-repeat: none;
 	-webkit-background-size: cover;
@@ -43,6 +43,7 @@ header {
 	background-position: center center
 }
 </style>
+
 </h:head>
 <h:body id="page-top" class="index">
 	<nav style="padding: 10px 0;background-color: rgba(34, 34, 34, 0.7);"
@@ -585,28 +586,30 @@ header {
 			</div>
 		</div>
 	</div>
-	<h:form>
-		<div class="modal fade" id="modal-signin" tabindex="-1" role="dialog"
-			aria-labelledby="modal-signin" aria-hidden="true"
-			style="display: none;">
-			<div style="margin-top: 130px" class="modal-dialog modal-sm">
-				<div style="width: 400px; color: #fed136;" class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">×</button>
-						<h4 class="modal-title">Sign in</h4>
-					</div>
+	<div class="modal fade" id="modal-signin" tabindex="-1" role="dialog"
+		aria-labelledby="modal-signin" aria-hidden="true"
+		style="display: none;">
+		<div style="margin-top: 130px" class="modal-dialog modal-sm">
+			<div style="width: 400px; color: #fed136;" class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title">Sign in</h4>
+				</div>
+				<h:form>
 					<div class="modal-body">
 
 						<div class="form-group">
-
+							<h:messages></h:messages>
 							<label for="emailAddress">Username :</label>
-							<h:inputText styleClass="form-control input-lg"
+							<h:inputText requiredMessage="Nhap username" required="true"
+								styleClass="form-control input-lg"
 								value="#{userBean.user.username}"></h:inputText>
 						</div>
 						<div class="form-group">
 							<label for="password">Password :</label>
-							<h:inputSecret styleClass="form-control input-lg"
+							<h:inputSecret requiredMessage="Nhap password" required="true"
+								styleClass="form-control input-lg"
 								value="#{userBean.user.password}"></h:inputSecret>
 						</div>
 
@@ -614,15 +617,17 @@ header {
 
 					<div class="modal-footer">
 
-						<h:commandButton action="#{userBean.login_Student}"
+
+						<h:commandButton id="login" type="submit"
+							action="#{userBean.login_Student}"
 							styleClass="btn btn-warning btn-block btn-lg" value="Login" />
 
 					</div>
+				</h:form>
 
-				</div>
 			</div>
 		</div>
-	</h:form>
+	</div>
 	<!-- jQuery Version 1.11.0 -->
 	<h:outputScript library="js" name="jquery-1.11.1.js" />
 
@@ -637,9 +642,9 @@ header {
 	<h:outputScript library="js" name="jqBootstrapValidation.js" />
 	<!-- Contact Form JavaScript -->
 
-	<h:outputScript library="js" name="contact_me.js" />
+
 	<h:outputScript library="js" name="agency.js" />
-	<h:outputScript library="js" name="contact_me.js" />
+
 
 
 	<!-- Custom Theme JavaScript -->

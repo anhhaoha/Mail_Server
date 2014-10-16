@@ -35,6 +35,7 @@ public class Profiles  implements java.io.Serializable {
      private String class_;
 
     public Profiles() {
+    	
     }
 
 	
