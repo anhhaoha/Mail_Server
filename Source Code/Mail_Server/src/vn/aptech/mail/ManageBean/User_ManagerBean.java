@@ -35,7 +35,7 @@ public class User_ManagerBean {
 	public User_ManagerBean() {
 		super();
 		user = new Users();
-
+//		(Users) HttpUtils.getFromSession("users")
 	}
 
 	public String getOldPass() {
@@ -54,9 +54,11 @@ public class User_ManagerBean {
 		this.enterPass = enterPass;
 	}
 
+
+
 	public String login_Student() {
 		String msg;
-
+		
 		if (User_DAO.getInstance().login_Student(user) != null)
 
 		{

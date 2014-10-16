@@ -42,7 +42,8 @@
 						to <strong>#{mailBean.viewMailDetail.usersByAccountReceiveId.displayName}</strong>
 					</div>
 					<div class="col-md-4">
-						<p class="date">#{mailBean.viewMailDetail.sendDate}</p>
+						
+						<h:outputText value="#{lst.sendDate}" styleClass="date"><f:convertDateTime type="date" pattern="dd-MM-yyyy"/></h:outputText>
 					</div>
 				</div>
 			</div>

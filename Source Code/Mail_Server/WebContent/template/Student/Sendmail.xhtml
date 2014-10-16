@@ -55,8 +55,7 @@
 					<ui:repeat var="lst" value="#{ mailBean.viewSendMail }">
 						<li class="list-group-item"><span class="pull-left chk">
 								<input type="checkbox" />
-						</span>To: <a class="" href="ViewMail.xhtml?id=#{lst.mailId}"> <small
-								class="pull-right text-muted">#{lst.sendDate}</small> <strong>#{lst.usersByAccountReceiveId.displayName}</strong>
+						</span>To: <a class="" href="ViewMail.xhtml?id=#{lst.mailId}"> <h:outputText value="#{lst.sendDate}" styleClass="pull-right text-muted"><f:convertDateTime type="date" pattern="dd-MM-yyyy"/></h:outputText> <strong>#{lst.usersByAccountReceiveId.displayName}</strong>
 								<span>#{lst.title} - </span> <c:if test="#{lst.status == true}">
 									<span class="label label-sm btn-success">new</span>
 								</c:if> <br />

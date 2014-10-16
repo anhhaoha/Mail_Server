@@ -4,6 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	 xmlns:p="http://primefaces.org/ui"
+	 	xmlns:f="http://java.sun.com/jsf/core"
 	>
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -11,9 +12,22 @@
 </h:head>
 <h:body>
 
-<h:form name="myForm">
+<h:form name="myForm" enctype="multipart/form-data">
 		<h:messages style=""></h:messages>
 		
+		
+		
+		  <p:outputLabel value="Multiple:" for="themes" />
+        <p:autoComplete id="themes" multiple="true" value="#{mailBean.selected}" completeMethod="#{mailBean.completeTheme}"
+                        var="theme" itemLabel="#{theme.username}" converter="UserConverter" itemValue="#{theme}" forceSelection="true">
+            <p:column style="width:10%">
+                <h:outputText styleClass="ui-theme ui-theme-#{theme.username}" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{theme.username}" />
+            </p:column>
+        </p:autoComplete>
 	
 		<h:outputLabel>AccountReceiveId:</h:outputLabel>
 		<h:inputText   value="#{mailBean.users.username}"/>
@@ -28,7 +42,21 @@
 		<p:editor value="#{mailBean.mail.content}"/>
 		<br/>
 
-		<h:commandButton action="#{mailBean.insert_Mail}" value="Save" />
+<h:inputFile id="file" label="file" value="#{mailBean.part}" >
+							<!-- FileUploadValidator for file validation -->
+							<f:validator validatorId="FileUploadValidator" />
+						</h:inputFile>
+
+						<h:message style="color: red" for="file" />
+						<br />
+
+						<h:commandButton id="submit" action="#{mailBean.uploadFile}"
+							value="upload file" />
+						<br />
+						<h:outputText value="#{mailBean.statusMessage}"
+          rendered="#{not empty mailBean.statusMessage}" />
+
+		<h:commandButton action="#{mailBean.insert()}" value="Save" />
 	</h:form>
 	
 

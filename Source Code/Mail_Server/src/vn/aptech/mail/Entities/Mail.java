@@ -38,7 +38,7 @@ public class Mail  implements java.io.Serializable {
      private String title;
      private String content;
      private Date sendDate;
-     private Date readDate;
+    
      private boolean status;
      private Set<Attachs> attachses = new HashSet<Attachs>(0);
 
@@ -57,7 +57,7 @@ public class Mail  implements java.io.Serializable {
         this.sendDate = sendDate;
         this.status = status;
     }
-    public Mail(int mailId, Users usersByAccountSendId, Users usersByAccountReceiveId, String cc, String title, String content, Date sendDate, Date readDate, boolean status, Set<Attachs> attachses) {
+    public Mail(int mailId, Users usersByAccountSendId, Users usersByAccountReceiveId, String cc, String title, String content, Date sendDate,  boolean status, Set<Attachs> attachses) {
        this.mailId = mailId;
        this.usersByAccountSendId = usersByAccountSendId;
        this.usersByAccountReceiveId = usersByAccountReceiveId;
@@ -65,7 +65,7 @@ public class Mail  implements java.io.Serializable {
        this.title = title;
        this.content = content;
        this.sendDate = sendDate;
-       this.readDate = readDate;
+    
        this.status = status;
        this.attachses = attachses;
     }
@@ -143,17 +143,7 @@ public class Mail  implements java.io.Serializable {
         this.sendDate = sendDate;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="ReadDate", length=23)
-    public Date getReadDate() {
-        return this.readDate;
-    }
-    
-    public void setReadDate(Date readDate) {
-        this.readDate = readDate;
-    }
 
-    
     @Column(name="Status", nullable=false)
     public boolean isStatus() {
         return this.status;

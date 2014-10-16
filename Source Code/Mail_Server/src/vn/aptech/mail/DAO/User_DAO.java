@@ -56,7 +56,7 @@ public class User_DAO {
 
 		session.beginTransaction();
 
-		Query query = session.createQuery(" from Users where roles=3");
+		Query query = session.createQuery(" from Users");
 		list = query.list();
 		session.getTransaction().commit();
 		}catch( Exception ex ){
