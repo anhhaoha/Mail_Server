@@ -22,11 +22,9 @@ public class Profile_DAO {
 	}
 
 	public static Profile_DAO getInstance() {
-		
 		if (instance == null) {
 			instance = new Profile_DAO();
 		}
-		
 		return instance;
 	}
 	

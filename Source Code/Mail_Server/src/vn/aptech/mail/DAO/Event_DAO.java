@@ -30,8 +30,8 @@ public class Event_DAO {
 		try {
 			session.beginTransaction();
 			
-			Query query = session.createQuery("FROM Events");
-			listEvent = query.list();
+			Query query = session.createQuery("FROM Events e ORDER BY e.createDate DESC");
+			listEvent = query.setMaxResults(5).list();
 			
 			session.getTransaction().commit();
 		}catch( Exception ex ){

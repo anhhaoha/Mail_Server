@@ -38,7 +38,6 @@ public class Mail  implements java.io.Serializable {
      private String title;
      private String content;
      private Date sendDate;
-    
      private boolean status;
      private Set<Attachs> attachses = new HashSet<Attachs>(0);
 
@@ -57,7 +56,7 @@ public class Mail  implements java.io.Serializable {
         this.sendDate = sendDate;
         this.status = status;
     }
-    public Mail(int mailId, Users usersByAccountSendId, Users usersByAccountReceiveId, String cc, String title, String content, Date sendDate,  boolean status, Set<Attachs> attachses) {
+    public Mail(int mailId, Users usersByAccountSendId, Users usersByAccountReceiveId, String cc, String title, String content, Date sendDate, Date readDate, boolean status, Set<Attachs> attachses) {
        this.mailId = mailId;
        this.usersByAccountSendId = usersByAccountSendId;
        this.usersByAccountReceiveId = usersByAccountReceiveId;
@@ -65,7 +64,6 @@ public class Mail  implements java.io.Serializable {
        this.title = title;
        this.content = content;
        this.sendDate = sendDate;
-    
        this.status = status;
        this.attachses = attachses;
     }
@@ -144,6 +142,7 @@ public class Mail  implements java.io.Serializable {
     }
 
 
+    
     @Column(name="Status", nullable=false)
     public boolean isStatus() {
         return this.status;

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <h:html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Home</title>
@@ -14,6 +17,24 @@
 		href="/Mail_Server/resources/css/font-awesome.min.css" />
 	<!-- Custom Fonts -->
 	<style type="text/css">
+.portfolio-modal .close-modal {
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	width: 80px;
+	height: 75px;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+section h2.section-heading {
+	margin-top: 0;
+	margin-bottom: 15px;
+	font-size: 40px;
+	position: relative;
+	top: -60px;
+}
+
 .btn-warning:hover, .btn-warning:focus, .btn-warning:active,
 	.btn-warning.active, .open>.dropdown-toggle.btn-warning {
 	border-color: #fed136 !important;
@@ -43,7 +64,6 @@ header {
 	background-position: center center
 }
 </style>
-
 </h:head>
 <h:body id="page-top" class="index">
 	<nav style="padding: 10px 0;background-color: rgba(34, 34, 34, 0.7);"
@@ -85,7 +105,7 @@ header {
 		<div class="intro-text">
 			<div class="intro-lead-in">Welcome To CRS College!</div>
 			<div class="intro-heading">It's Nice To Meet You</div>
-			<a href="#portfolio" class="page-scroll btn btn-xl">ABUOT US</a>
+			<a href="#portfolio" class="page-scroll btn btn-xl">ABOUT US</a>
 		</div>
 	</div>
 	</header>
@@ -97,9 +117,7 @@ header {
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<h2 class="section-heading">Abuot us</h2>
-				<h3 class="section-subheading text-muted">Lorem ipsum dolor sit
-					amet consectetur.</h3>
+				<h2 class="section-heading">About us</h2>
 			</div>
 		</div>
 		<div class="row">
@@ -110,12 +128,11 @@ header {
 						<div class="portfolio-hover-content">
 							<i class="fa fa-plus fa-3x"></i>
 						</div>
-					</div> <h:graphicImage library="img/portfolio" name="roundicons.png"
-						styleClass="img-responsive" />
+					</div> <h:graphicImage style="width: 100%;" library="img/portfolio"
+						name="Campus-Ambassadors-2012.jpg" styleClass="img-responsive" />
 				</a>
 				<div class="portfolio-caption">
-					<h4>Round Icons</h4>
-					<p class="text-muted">Graphic Design</p>
+					<h4>About CRS University</h4>
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-6 portfolio-item">
@@ -125,13 +142,12 @@ header {
 						<div class="portfolio-hover-content">
 							<i class="fa fa-plus fa-3x"></i>
 						</div>
-					</div> <h:graphicImage library="img/portfolio"
-						name="startup-framework.png" styleClass="img-responsive" />
+					</div> <h:graphicImage style="width: 100%;" library="img/portfolio"
+						name="IMG-0085-S.jpg" styleClass="img-responsive" />
 
 				</a>
 				<div class="portfolio-caption">
-					<h4>Startup Framework</h4>
-					<p class="text-muted">Website Design</p>
+					<h4>Academic Resources</h4>
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-6 portfolio-item">
@@ -141,13 +157,12 @@ header {
 						<div class="portfolio-hover-content">
 							<i class="fa fa-plus fa-3x"></i>
 						</div>
-					</div> <h:graphicImage library="img/portfolio" name="treehouse.png"
-						styleClass="img-responsive" />
+					</div> <h:graphicImage style="width: 100%;" library="img/portfolio"
+						name="USA2012074260-cr.jpg" styleClass="img-responsive" />
 
 				</a>
 				<div class="portfolio-caption">
-					<h4>Treehouse</h4>
-					<p class="text-muted">Website Design</p>
+					<h4>Campus Resources</h4>
 				</div>
 			</div>
 
@@ -161,97 +176,55 @@ header {
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<h2 class="section-heading">Event</h2>
-				<h3 class="section-subheading text-muted">Lorem ipsum dolor sit
-					amet consectetur.</h3>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
 				<ul class="timeline">
-					<li>
-						<div class="timeline-image">
-							<h:graphicImage library="img/about" name="1.jpg"
-								styleClass="img-circle img-responsive" />
 
-						</div>
-						<div class="timeline-panel">
-							<div class="timeline-heading">
-								<h4>2009-2011</h4>
-								<h4 class="subheading">Our Humble Beginnings</h4>
-							</div>
-							<div class="timeline-body">
-								<p class="text-muted">Lorem ipsum dolor sit amet,
-									consectetur adipisicing elit. Sunt ut voluptatum eius sapiente,
-									totam reiciendis temporibus qui quibusdam, recusandae sit vero
-									unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-							</div>
-						</div>
-					</li>
-					<li class="timeline-inverted">
-						<div class="timeline-image">
+					<c:forEach var="lst" items="#{eventBean.findAll}"
+						varStatus="status">
+						<c:if test="${status.index % 2 == 0 }">
+							<li class="timeline-inverted">
+								<div class="timeline-image">
+									<h:graphicImage style="border-radius: 100%;height: 101%;"
+										library="img/about" name="#{lst.picture}"
+										styleClass="img-circle img-responsive" />
 
-							<h:graphicImage library="img/about" name="2.jpg"
-								styleClass="img-circle img-responsive" />
+								</div>
+								<div class="timeline-panel">
+									<a href="#ViewDetails?id=#{lst.eventId}" data-toggle="modal">
+										<div class="timeline-heading">
+											<h4>#{lst.createDate}</h4>
+											<h4 class="subheading">#{lst.title}</h4>
+										</div>
+									</a>
+									<div class="timeline-body">#{lst.description}</div>
+								</div>
+							</li>
+						</c:if>
+						<c:if test="${status.index % 2 != 0 }">
+							<li>
+								<div class="timeline-image">
+									<h:graphicImage style="border-radius: 100%;height: 101%;"
+										library="img/about" name="#{lst.picture}"
+										styleClass="img-circle img-responsive" />
 
-						</div>
-						<div class="timeline-panel">
-							<div class="timeline-heading">
-								<h4>March 2011</h4>
-								<h4 class="subheading">An Agency is Born</h4>
-							</div>
-							<div class="timeline-body">
-								<p class="text-muted">Lorem ipsum dolor sit amet,
-									consectetur adipisicing elit. Sunt ut voluptatum eius sapiente,
-									totam reiciendis temporibus qui quibusdam, recusandae sit vero
-									unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="timeline-image">
-							<h:graphicImage library="img/about" name="3.jpg"
-								styleClass="img-circle img-responsive" />
+								</div>
+								<div class="timeline-panel">
+									<a href="#ViewDetails?id=#{lst.eventId}" data-toggle="modal">
+										<div class="timeline-heading">
+											<h4>#{lst.createDate}</h4>
+											<h4 class="subheading">#{lst.title}</h4>
+										</div>
+									</a>
+									<div class="timeline-body">#{lst.description}</div>
+								</div>
+							</li>
+						</c:if>
 
-						</div>
-						<div class="timeline-panel">
-							<div class="timeline-heading">
-								<h4>December 2012</h4>
-								<h4 class="subheading">Transition to Full Service</h4>
-							</div>
-							<div class="timeline-body">
-								<p class="text-muted">Lorem ipsum dolor sit amet,
-									consectetur adipisicing elit. Sunt ut voluptatum eius sapiente,
-									totam reiciendis temporibus qui quibusdam, recusandae sit vero
-									unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-							</div>
-						</div>
-					</li>
-					<li class="timeline-inverted">
-						<div class="timeline-image">
-							<h:graphicImage library="img/about" name="4.jpg"
-								styleClass="img-circle img-responsive" />
+					</c:forEach>
 
-						</div>
-						<div class="timeline-panel">
-							<div class="timeline-heading">
-								<h4>July 2014</h4>
-								<h4 class="subheading">Phase Two Expansion</h4>
-							</div>
-							<div class="timeline-body">
-								<p class="text-muted">Lorem ipsum dolor sit amet,
-									consectetur adipisicing elit. Sunt ut voluptatum eius sapiente,
-									totam reiciendis temporibus qui quibusdam, recusandae sit vero
-									unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-							</div>
-						</div>
-					</li>
-					<li class="timeline-inverted">
-						<div class="timeline-image">
-							<h4>
-								Be Part <br />Of Our <br />Story!
-							</h4>
-						</div>
-					</li>
 				</ul>
 			</div>
 		</div>
@@ -263,9 +236,8 @@ header {
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<h2 class="section-heading">FACULTY</h2>
-				<h3 class="section-subheading text-muted">Lorem ipsum dolor sit
-					amet consectetur.</h3>
+				<h2 class="section-heading">Excellent teachers</h2>
+				<h3 class="section-subheading text-muted"></h3>
 			</div>
 		</div>
 		<div class="row">
@@ -275,7 +247,7 @@ header {
 						styleClass="img-responsive img-circle" />
 
 					<h4>Kay Garland</h4>
-					<p class="text-muted">Lead Designer</p>
+					<p class="text-muted"></p>
 					<ul class="list-inline social-buttons">
 						<li><a><i class="fa fa-twitter"></i></a></li>
 						<li><a><i class="fa fa-facebook"></i></a></li>
@@ -289,7 +261,7 @@ header {
 						styleClass="img-responsive img-circle" />
 
 					<h4>Larry Parker</h4>
-					<p class="text-muted">Lead Marketer</p>
+					<p class="text-muted"></p>
 					<ul class="list-inline social-buttons">
 						<li><a><i class="fa fa-twitter"></i></a></li>
 						<li><a><i class="fa fa-facebook"></i></a></li>
@@ -303,7 +275,7 @@ header {
 						styleClass="img-responsive img-circle" />
 
 					<h4>Diana Pertersen</h4>
-					<p class="text-muted">Lead Developer</p>
+					<p class="text-muted"></p>
 					<ul class="list-inline social-buttons">
 						<li><a><i class="fa fa-twitter"></i></a></li>
 						<li><a><i class="fa fa-facebook"></i></a></li>
@@ -344,30 +316,55 @@ header {
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="modal-body">
 							<!-- Project Details Go Here -->
-							<h2>Project Name</h2>
-							<p class="item-intro text-muted">Lorem ipsum dolor sit amet
-								consectetur.</p>
+							<h2>About CRS University</h2>
+
 							<h:graphicImage library="img/portfolio"
-								name="roundicons-free.png" styleClass="img-responsive" />
-							<p>Use this area to describe your project. Lorem ipsum dolor
-								sit amet, consectetur adipisicing elit. Est blanditiis dolorem
-								culpa incidunt minus dignissimos deserunt repellat aperiam quasi
-								sunt officia expedita beatae cupiditate, maiores repudiandae,
-								nostrum, reiciendis facere nemo!</p>
+								name="Campus-Ambassadors-2012.jpg"
+								styleClass="img-responsive img-centered" />
+
+							<p>CRS prioritizes outreach to Catholic colleges, Catholic
+								universities and Newman Centers because college students are
+								today’s most socially-minded, compassionate, eager, and
+								effective change agents. Catholic campuses across the country
+								play a critical role in informing and steering the national
+								dialogue on today’s most pressing justice issues.</p>
+							<p>College and university staff can partner with CRS to help
+								equip their student leaders with resources and programs for
+								campus education and activism. Faculty can rely on CRS to
+								provide quality resources to assist their research and
+								supplement their syllabus in areas of global concern.</p>
 							<p>
-								<strong>Want these icons in this portfolio item sample?</strong>You
-								can download 60 of them for free, courtesy of <a>RoundIcons.com</a>,
-								or you can purchase the 1500 icon set <a>here</a>.
+								CRS is using innovative approaches to help the world’s poorest
+								people lead better lives.<a href="http://annualreport.crs.org/">
+									Explore the CRS 2013 Interactive Annual Report to learn more.</a>
 							</p>
-							<ul class="list-inline">
-								<li>Date: July 2014</li>
-								<li>Client: Round Icons</li>
-								<li>Category: Graphic Design</li>
-							</ul>
+							<p>
+								<h4>Mission and History of CRS</h4>
+								View this <a href="https://www.youtube.com/watch?v=9M73-PY0JJs">20-minute
+									presentation</a> given by Chris Tucker, Director of Special
+								Projects at CRS, to understand the transformations in CRS’
+								evolving view of its mission and identity: from reconstruction
+								of Europe to global scope (1950s); from resource-transfer to
+								economic development (1970s/80s); from humanitarian focus to
+								“justice lens” on right relationships (1990s).
+							</p>
+							<p>
+								<h4>How CRS Views Partnership</h4>
+								This <a href="https://www.youtube.com/watch?v=r4Nf42j6HtE">15-minute
+									presentation</a> by Sarah Ford, Senior Technical Advisor,
+								Partnership, Capacity Strengthening, describes how partnership
+								is a consistent feature of CRS work, guided by solidarity and
+								subsidiarity. Imbalance of resources can be challenging: CRS may
+								be grant-holder but its work is local. Capacity-strengthening is
+								therefore critical at all levels of CRS’ work, particularly in
+								its work with U.S. colleges and universities.
+							</p>
+
 							<button type="button" class="btn btn-primary"
 								data-dismiss="modal">
 								<i class="fa fa-times"></i> Close Project
 							</button>
+
 						</div>
 					</div>
 				</div>
@@ -388,24 +385,30 @@ header {
 				<div class="row">
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="modal-body">
-							<h2>Project Heading</h2>
-							<p class="item-intro text-muted">Lorem ipsum dolor sit amet
-								consectetur.</p>
-							<h:graphicImage library="img/portfolio"
-								name="startup-framework-preview.png"
+							<h2>Academic Resources</h2>
+							<h:graphicImage library="img/portfolio" name="IMG-0085-S.jpg"
 								styleClass="img-responsive img-centered" />
 
+							<p>CRS values our partnerships with college and university
+								faculty across the country! There are many ways to partner with
+								CRS.</p>
 							<p>
-								<a>Startup Framework</a> is a website builder for professionals.
-								Startup Framework contains components and complex blocks
-								(PSD+HTML Bootstrap themes and templates) which can easily be
-								integrated into almost any design. All of these components are
-								made in the same style, and can easily be integrated into
-								projects, allowing you to create hundreds of solutions for your
-								future projects.
+								<b>JOIN</b> us, and our faculty partners, in our two flagship
+								university partnership programs – <a
+									href="http://university.crs.org/gsn/">Global Solidarity
+									Network (GSN) </a> and <a
+									href="http://university.crs.org/scholars-in-global-solidarity/">
+									Scholars in Global Solidarity (SGS). </a>
 							</p>
 							<p>
-								You can preview Startup Framework <a>here</a>.
+								<b>BROWSE</b> our publications and resources by issue sector in
+								the right side bar, and incorporate them into your research and
+								teaching.
+							</p>
+							<p>
+								<b>CONTACT</b> your <a href="#">CRS US Regional Office </a>with
+								creative ideas as we not only want to well-equip you for your
+								research and teaching work but also partner with you on campus.
 							</p>
 							<button type="button" class="btn btn-primary"
 								data-dismiss="modal">
@@ -432,23 +435,17 @@ header {
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="modal-body">
 							<!-- Project Details Go Here -->
-							<h2>Project Name</h2>
-							<p class="item-intro text-muted">Lorem ipsum dolor sit amet
-								consectetur.</p>
+							<h2>Campus Resources</h2>
 							<h:graphicImage library="img/portfolio"
-								name="treehouse-preview.png"
+								name="USA2012074260-cr.jpg"
 								styleClass="img-responsive img-centered" />
 
-							<p>
-								Treehouse is a free PSD web template built by <a>Mathavan
-									Jaya</a>. This is bright and spacious design perfect for people or
-								startup companies looking to showcase their apps or other
-								projects.
-							</p>
-							<p>
-								You can download the PSD template in this portfolio sample item
-								at <a>FreebiesXpress.com</a>.
-							</p>
+							<p>Browse our various student resources in the blue sidebar
+								for inspiration on how to incorporate the work of CRS and social
+								justice into your campus community.</p>
+							<p>If you are in need of academic resources for a course or
+								workshop, please visit our site that profiles our Academic
+								Resources.</p>
 							<button type="button" class="btn btn-primary"
 								data-dismiss="modal">
 								<i class="fa fa-times"></i> Close Project
@@ -460,132 +457,10 @@ header {
 		</div>
 	</div>
 
-	<!-- Portfolio Modal 4 -->
-	<div class="portfolio-modal modal fade" id="portfolioModal4"
-		tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<div class="close-modal" data-dismiss="modal">
-				<div class="lr">
-					<div class="rl"></div>
-				</div>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8 col-lg-offset-2">
-						<div class="modal-body">
-							<!-- Project Details Go Here -->
-							<h2>Project Name</h2>
-							<p class="item-intro text-muted">Lorem ipsum dolor sit amet
-								consectetur.</p>
+	<!-- EventDetails Modal 1 -->
 
-							<h:graphicImage library="img/portfolio" name="golden-preview.png"
-								styleClass="img-responsive img-centered" />
 
-							<p>
-								Start Bootstrap's Agency theme is based on Golden, a free PSD
-								website template built by <a>Mathavan Jaya</a>. Golden is a
-								modern and clean one page web template that was made exclusively
-								for Best PSD Freebies. This template has a great portfolio,
-								timeline, and meet your team sections that can be easily
-								modified to fit your needs.
-							</p>
-							<p>
-								You can download the PSD template in this portfolio sample item
-								at <a>FreebiesXpress.com</a>.
-							</p>
-							<button type="button" class="btn btn-primary"
-								data-dismiss="modal">
-								<i class="fa fa-times"></i> Close Project
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<!-- Portfolio Modal 5 -->
-	<div class="portfolio-modal modal fade" id="portfolioModal5"
-		tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<div class="close-modal" data-dismiss="modal">
-				<div class="lr">
-					<div class="rl"></div>
-				</div>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8 col-lg-offset-2">
-						<div class="modal-body">
-							<!-- Project Details Go Here -->
-							<h2>Project Name</h2>
-							<p class="item-intro text-muted">Lorem ipsum dolor sit amet
-								consectetur.</p>
-							<h:graphicImage library="img/portfolio" name="escape-preview.png"
-								styleClass="img-responsive img-centered" />
-
-							<p>
-								Escape is a free PSD web template built by <a>Mathavan Jaya</a>.
-								Escape is a one page web template that was designed with
-								agencies in mind. This template is ideal for those looking for a
-								simple one page solution to describe your business and offer
-								your services.
-							</p>
-							<p>
-								You can download the PSD template in this portfolio sample item
-								at <a>FreebiesXpress.com</a>.
-							</p>
-							<button type="button" class="btn btn-primary"
-								data-dismiss="modal">
-								<i class="fa fa-times"></i> Close Project
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Portfolio Modal 6 -->
-	<div class="portfolio-modal modal fade" id="portfolioModal6"
-		tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<div class="close-modal" data-dismiss="modal">
-				<div class="lr">
-					<div class="rl"></div>
-				</div>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8 col-lg-offset-2">
-						<div class="modal-body">
-							<!-- Project Details Go Here -->
-							<h2>Project Name</h2>
-							<p class="item-intro text-muted">Lorem ipsum dolor sit amet
-								consectetur.</p>
-							<h:graphicImage library="img/portfolio" name="dreams-preview.png"
-								styleClass="img-responsive img-centered" />
-
-							<p>
-								Dreams is a free PSD web template built by <a>Mathavan Jaya</a>.
-								Dreams is a modern one page web template designed for almost any
-								purpose. It’s a beautiful template that’s designed with the
-								Bootstrap framework in mind.
-							</p>
-							<p>
-								You can download the PSD template in this portfolio sample item
-								at <a>FreebiesXpress.com</a>.
-							</p>
-							<button type="button" class="btn btn-primary"
-								data-dismiss="modal">
-								<i class="fa fa-times"></i> Close Project
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="modal fade" id="modal-signin" tabindex="-1" role="dialog"
 		aria-labelledby="modal-signin" aria-hidden="true"
 		style="display: none;">
@@ -628,6 +503,7 @@ header {
 			</div>
 		</div>
 	</div>
+
 	<!-- jQuery Version 1.11.0 -->
 	<h:outputScript library="js" name="jquery-1.11.1.js" />
 

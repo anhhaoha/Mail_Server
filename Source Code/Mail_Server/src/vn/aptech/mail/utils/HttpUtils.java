@@ -30,23 +30,19 @@ public class HttpUtils {
         sb.append(request.getServerPort());
         //sb.append("/");
         sb.append(request.getContextPath());
-        //sb.append("/");
+        sb.append("/");
 
         
         return sb.toString();
         
         
     }
+    
     public static Object getFromSession(String name) {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         return sessionMap.get(name);
-        
     }
-    public static void deleteFromSession(String name) {
-      FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-      
-        
-    }
+    
     
     //add success message
     public static void addSuccessMessgae(String summary, String detail) {

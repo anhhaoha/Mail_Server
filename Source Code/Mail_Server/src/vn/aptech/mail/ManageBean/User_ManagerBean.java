@@ -35,7 +35,7 @@ public class User_ManagerBean {
 	public User_ManagerBean() {
 		super();
 		user = new Users();
-//		(Users) HttpUtils.getFromSession("users")
+
 	}
 
 	public String getOldPass() {
@@ -54,11 +54,9 @@ public class User_ManagerBean {
 		this.enterPass = enterPass;
 	}
 
-
-
 	public String login_Student() {
 		String msg;
-		
+
 		if (User_DAO.getInstance().login_Student(user) != null)
 
 		{
@@ -69,12 +67,12 @@ public class User_ManagerBean {
 
 			if (roleId == 2) {
 
-				return "../Staff/Inbox.xhtml";
+				return "/template/Staff/Inbox";
 
 			} else {
 				if (roleId == 3)
 
-					return "Inbox";
+					return "/template/Student/Inbox"; 	
 
 			}
 
@@ -85,7 +83,7 @@ public class User_ManagerBean {
 
 			msg = "Success!";
 		} else {
-			msg = "Fail!";
+			msg = "Username or Password fail!!";
 
 		}
 		FacesMessage massage = new FacesMessage(FacesMessage.SEVERITY_INFO,

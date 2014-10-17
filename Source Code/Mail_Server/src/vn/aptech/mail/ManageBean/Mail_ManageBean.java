@@ -15,14 +15,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
-import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.faces.view.facelets.FaceletContext;
 import javax.servlet.http.Part;
 
-import org.hibernate.tool.hbmlint.Detector;
 
 import vn.aptech.mail.DAO.Attachs_DAO;
 import vn.aptech.mail.DAO.Mail_DAO;
@@ -49,26 +46,6 @@ public class Mail_ManageBean {
 	private Users users;
 	private Part part;
 	private String statusMessage;
-	private List<Users> selected;
-	private String txt1;
-	
-	
-	
-	public String getTxt1() {
-		return txt1;
-	}
-
-	public void setTxt1(String txt1) {
-		this.txt1 = txt1;
-	}
-
-	public List<Users> getSelected() {
-		return selected;
-	}
-
-	public void setSelected(List<Users> selected) {
-		this.selected = selected;
-	}
 
 	public String getStatusMessage() {
 		return statusMessage;
@@ -130,6 +107,8 @@ public class Mail_ManageBean {
 	}
 
 	public Long getCountMailReceived() {
+		countMailReceived = Mail_DAO.getInstance()
+				.countMailReceived(users.getAccountId());
 		return countMailReceived;
 	}
 
@@ -174,8 +153,13 @@ public class Mail_ManageBean {
 		listSendMail = Mail_DAO.getInstance().findMailByAccountSendId(users.getAccountId());
 		paginatorSendMail = new RepeatPaginator(listSendMail);
 		// count mail
+//		countMail();
+	}
+	
+	public Long getCountMail() {
 		countMailReceived = Mail_DAO.getInstance()
 				.countMailReceived(users.getAccountId());
+		return countMailReceived;
 	}
 
 	public List<Mail> getViewMailInBox() {
@@ -223,87 +207,81 @@ public class Mail_ManageBean {
 		}
 		return "Inbox";
 	}
-	public List<String> completeText(String query) {
-		List<String> results = new ArrayList<String>();
-		for (int i = 0; i < 10; i++) {
-			results.add(query + i);
-		}
-
-		return results;
-	}
-
-	public List<Users> completeTheme(String query) {
-		List<Users> ls = User_DAO.getInstance().findAllStudent();
-		List<Users> filteredThemes = new ArrayList<Users>();
-		for (int i = 0; i < ls.size(); i++) {
-			Users skin = ls.get(i);
-			if (skin.getUsername().toLowerCase().startsWith(query)) {
-				filteredThemes.add(skin);
-			}
-		}
-
-		return filteredThemes;
-	}
 	
 	
 	public String insert_Mail()
 	{
 		
-		 String msg=null;
-		
+		 String msg;
 		  String re=users.getUsername();
-		  Users usergetid =new Users();
-		  List<Mail> list=new ArrayList<Mail>();
-			 for(Users username:selected)
-			 {
-			usergetid = User_DAO.getInstance().findIdByUser(
-					username.getUsername());
-			Users ur = new Users();
-			ur.setAccountId(usergetid.getAccountId());
-
-			users = (Users) HttpUtils.getFromSession("users");
-			Users u = new Users();
-			u.setAccountId(users.getAccountId());
-
-			mail.setUsersByAccountSendId(u);
-
-			mail.setUsersByAccountReceiveId(ur);
-
-			if (Mail_DAO.getInstance().insertMail(mail)) {
-//			mail=Mail_DAO.getInstance().findMailByIdLast();
-				list.add(mail);	
-				msg = "Created Successfully!";
-				System.out.println(list.size());
-			} else {
-				msg = "Error. Please check again!";
-
-			}
-			 }
-			 
-			  FacesMessage massage = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
-		      FacesContext.getCurrentInstance().addMessage(null, massage);
+//		  Users usergetid =new Users();
+		  Users usergetid=User_DAO.getInstance().findIdByUser(users.getUsername());
+		  
+		 
+		 Users ur=new Users();
+		 ur.setAccountId(usergetid.getAccountId());
+		 
+		users= (Users) HttpUtils.getFromSession("users");
+		Users u=new Users();	 
+		u.setAccountId(users.getAccountId());
+		
+		mail.setUsersByAccountSendId(u);
+		
+		mail.setUsersByAccountReceiveId(ur);
+		
+			 if(Mail_DAO.getInstance().insertMail(mail))
+				{				 
+					 msg = "Created Successfully!";
+					 if(part != null){
+						 try {
+								uploadFile();
+								Attachs attach = new Attachs();
+								attach.setMail(mail);
+								attach.setAttachName(getFileName(part));
+								
+								Attachs_DAO.getInstance().insertAttachs(attach);
+								
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								System.out.println(e);
+							}
+					 }
+					 
+		        }else{
+		             msg = "Error. Please check again!";
+		        
+				}
+				  FacesMessage massage = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+			      FacesContext.getCurrentInstance().addMessage(null, massage);
+	
 
 	      return null;
 	}
 	
 	
-	private String getFileName(Part part) {
-		final String partHeader = part.getHeader("content-disposition");
-		System.out.println("***** partHeader: " + partHeader);
-		for (String content : part.getHeader("content-disposition").split(";")) {
-			if (content.trim().startsWith("filename")) {
-				return content.substring(content.indexOf('=') + 1).trim()
-						.replace("\"", "");
+	@FacesConverter(forClass=Users.class)
+	public class UserConverter implements Converter {
+
+	
+		@Override
+		public Object getAsObject(FacesContext facesContext, UIComponent arg1, String key) {
+			return User_DAO.getInstance().findById(key);
 			}
-		}
-		return null;
+
+		@Override
+		public String getAsString(FacesContext arg0, UIComponent arg1, Object value) {
+			// TODO Auto-generated method stub
+			Users u = (Users) value;
+			return ""+u.getAccountId();
+		}	
+		
 	}
 	
 	
-
 	public String uploadFile() throws IOException {
 
-	
+		// Extract file name from content-disposition header of file part
 		String fileName = getFileName(part);
 		System.out.println("***** fileName: " + fileName);
 
@@ -325,8 +303,7 @@ public class Mail_ManageBean {
 			while ((read = inputStream.read(bytes)) != -1) {
 				outputStream.write(bytes, 0, read);
 			}
-//			savepart=getFileName(part);
-			HttpUtils.putToSession("savePart",getFileName(part) );
+
 			statusMessage = "File upload successfull !!";
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -342,107 +319,43 @@ public class Mail_ManageBean {
 		return null; // return to same page
 	}
 
-	
-
-	public void insert() throws IOException
-	{
-		
-		Attachs attachs =new Attachs();
-		String msg=null;
-		String parts=(String) HttpUtils.getFromSession("savePart");
-		
-		if(parts!=null)
-		{
-			String re = users.getUsername();
-			Users usergetid = new Users();
-			List<Mail> list = new ArrayList<Mail>();
-			for (Users username : selected) {
-				usergetid = User_DAO.getInstance().findIdByUser(
-						username.getUsername());
-				Users ur = new Users();
-				ur.setAccountId(usergetid.getAccountId());
-
-				users = (Users) HttpUtils.getFromSession("users");
-				Users u = new Users();
-				u.setAccountId(users.getAccountId());
-
-				mail.setUsersByAccountSendId(u);
-
-				mail.setUsersByAccountReceiveId(ur);
-
-				if (Mail_DAO.getInstance().insertMail(mail)) {
-
-					msg = "Created Successfully!";
-				} else {
-					msg = "Error. Please check again!";
-
-				}
+	private String getFileName(Part part) {
+		final String partHeader = part.getHeader("content-disposition");
+		System.out.println("***** partHeader: " + partHeader);
+		for (String content : part.getHeader("content-disposition").split(";")) {
+			if (content.trim().startsWith("filename")) {
+				return content.substring(content.indexOf('=') + 1).trim()
+						.replace("\"", "");
 			}
-			System.out.println(selected.size());
-			list = Mail_DAO.getInstance().findMailByIdLast(selected.size());
-			
-			attachs.setAttachName(parts);
-		
-			for(Mail ma:list)
-			{
-				Mail m=new Mail();
-				m.setMailId(ma.getMailId());
-				int b=ma.getMailId();
-				System.out.println(b);
-				attachs.setMail(m);
-				if(Attachs_DAO.getInstance().insertAttachs(attachs))
-				{
-				HttpUtils.deleteFromSession("savePart");
-					 msg = "Created Successfully!";
-					 
-		        }else{
-		             msg = "Error. Please check again!";
-		        
-				}
-			}
-		}else
-		{
-			insert_Mail();
 		}
-		
-		
-//		m.setMailId(18);
-//		attachs.setMail(m);
-//		if(Attachs_DAO.getInstance().insertAttachs(attachs))
-//		{
-//		HttpUtils.deleteFromSession("savePart");
-//			 msg = "Created Successfully!";
-//			 
-//        }else{
-//             msg = "Error. Please check again!";
-//        
+		return null;
+	}
+
+//	public String getSearchMail() {
+//
+//		listMailInboxSearch = new ArrayList<Mail>();
+//		listSendMailSearch = new ArrayList<Mail>();
+//		searchResult = Mail_DAO.getInstance().searchMailByUsername(username);
+//		for (Mail mail : searchResult) {
+//			if (mail.getUsersByAccountReceiveId().getUsername()
+//					.equals("William") && mail.getUsersByAccountSendId().getUsername().equals(username)) {
+//				
+//				listMailInboxSearch.add(mail);
+//			}
+//			if (mail.getUsersByAccountSendId().getUsername()
+//					.equals("William") && mail.getUsersByAccountReceiveId().getUsername().equals(username)) {
+//				
+//				listSendMailSearch.add(mail);
+//			}
 //		}
+//
+//		System.out.println(searchResult.size());
+//		return "HomeStudent";
+//
+//	}
+	// public String getAbc() {
+	// System.out.println(mailSelected.length);
+	// return null;
+	// }
 
-
-FacesMessage massage = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
-FacesContext.getCurrentInstance().addMessage(null, massage);
-		
-		
-	}
-	
-	@FacesConverter(forClass=Users.class)
-	public class UserConverter implements Converter {
-
-	
-		@Override
-		public Object getAsObject(FacesContext facesContext, UIComponent arg1, String key) {
-			return User_DAO.getInstance().findById(key);
-			}
-
-		@Override
-		public String getAsString(FacesContext arg0, UIComponent arg1, Object value) {
-			// TODO Auto-generated method stub
-			Users u = (Users) value;
-			return ""+u.getAccountId();
-		}	
-		
-	}
-	
-	
-	
 }
