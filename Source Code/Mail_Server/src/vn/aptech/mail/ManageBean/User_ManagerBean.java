@@ -24,6 +24,7 @@ public class User_ManagerBean {
 	Users user;
 	String oldPass;
 	String enterPass;
+	
 	public Users getUser() {
 		return user;
 	}
@@ -35,6 +36,7 @@ public class User_ManagerBean {
 	public User_ManagerBean() {
 		super();
 		user = new Users();
+		
 
 	}
 
@@ -72,7 +74,7 @@ public class User_ManagerBean {
 			} else {
 				if (roleId == 3)
 
-					return "/template/Student/Inbox"; 	
+					return "DemoClass"; 	
 
 			}
 
@@ -177,10 +179,12 @@ public class User_ManagerBean {
 	}
 	
 	
-	public String logOut()
+	public String logout()
 	{
-		  FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "HomeStudent";
+		HttpUtils.deleteFromSession("users");
+		System.out.println(HttpUtils.getFromSession("users"));
+		return "/template/Home/Index";
+		
 	}
 	
 	@FacesConverter(forClass = Roles.class)

@@ -1,6 +1,9 @@
 package vn.aptech.mail.DAO;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -153,34 +156,38 @@ public class Mail_DAO {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
-
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
+//			mail.setReadDate(date);
+			mail.setSendDate(date);
+			mail.setStatus(false);
 			session.save(mail);
 			insertResult = true;
-
+			
 			session.getTransaction().commit();
-		} catch (Exception ex) {
+		}catch( Exception ex ){
 			ex.printStackTrace();
 			insertResult = false;
-		} finally {
+		}finally{
 			session.close();
 		}
 		return insertResult;
 	}
-
+	
 	public boolean updateMail(Mail mail) {
 		boolean updateResult = false;
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
-
+			
 			session.saveOrUpdate(mail);
 			updateResult = true;
-
+			
 			session.getTransaction().commit();
-		} catch (Exception ex) {
+		}catch( Exception ex ){
 			ex.printStackTrace();
 			updateResult = false;
-		} finally {
+		}finally{
 			session.close();
 		}
 		return updateResult;
@@ -203,6 +210,24 @@ public class Mail_DAO {
 			session.close();
 		}
 		return deleteResult;
+	}
+	public List<Mail> findMailByIdLast(int number) {
+		List<Mail> listMail = new ArrayList<Mail>();
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			session.beginTransaction();
+			
+			Query query = session.createQuery("FROM Mail m ORDER BY m.mailId DESC  ");
+
+			listMail = query.setMaxResults(number).list();
+			
+			session.getTransaction().commit();
+		}catch( Exception ex ){
+			ex.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return listMail;
 	}
 
 }

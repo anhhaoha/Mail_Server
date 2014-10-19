@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:selectOneMenu value="#{Profile.className}">
+
+			<f:selectItems value="#{Profile.classProfiles}" var="t"></f:selectItems>
+			<f:selectItem itemLabel="asdfg" itemValue="t.class_"></f:selectItem>
+		</p:selectOneMenu>
+
+		<h:commandButton value="Go" action="#{Profile.showStudent}" />
+		<br />
+		<c:if test="not #{Profile.pro}">
+			<h:outputText value="khong co mail"></h:outputText>
+		</c:if>
+		<c:otherwise>
+
+			<h:dataTable value="#{Profile.pro}" var="lst">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="ID" />
+					</f:facet>
+					<h:selectBooleanCheckbox value="#{Profile.checked[lst.accountId]}"></h:selectBooleanCheckbox>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+			#{lst.fullName}
+			</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Address" />
+					</f:facet>
+		#{lst.address}
+			</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Sex" />
+					</f:facet>
+			#{lst.gender}
+			</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Phone" />
+					</f:facet>
+			#{lst.phone}
+			</h:column>
+			</h:dataTable>
+
+		</c:otherwise>
+
+		<h:commandButton value="SendMail" action="#{Profile.getSendMail}"/>
+
+	</h:form>
+</h:body>
+</html>

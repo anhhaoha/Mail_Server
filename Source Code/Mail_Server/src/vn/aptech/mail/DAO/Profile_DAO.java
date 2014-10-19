@@ -22,9 +22,11 @@ public class Profile_DAO {
 	}
 
 	public static Profile_DAO getInstance() {
+		
 		if (instance == null) {
 			instance = new Profile_DAO();
 		}
+		
 		return instance;
 	}
 	
@@ -49,6 +51,54 @@ public class Profile_DAO {
 		return list;
 	
 	}
+	
+	
+	public List<Profiles> fidStudentClass(String clas)
+	{
+		List<Profiles> list=new ArrayList<Profiles>();
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+		session.beginTransaction();
+
+		Query query = session.createQuery(" from Profiles where class_=:clas");
+		query.setParameter("clas", clas);
+		list = query.list();
+		session.getTransaction().commit();
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			session.getTransaction().commit();
+
+			} finally {
+			session.close();
+			}
+		return list;
+	
+	}
+	
+	
+	public List<Profiles> fidProfileClass()
+	{
+		List<Profiles> list=new ArrayList<Profiles>();
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+		session.beginTransaction();
+
+		Query query = session.createQuery(" select class_ from Profiles ");
+		list = query.list();
+		session.getTransaction().commit();
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			session.getTransaction().commit();
+
+			} finally {
+			session.close();
+			}
+		return list;
+	
+	}
+	
 	
 
 	public static boolean insert_Profile(Profiles p) {
@@ -83,7 +133,7 @@ public class Profile_DAO {
 		}
 		return true;
 	}
-	public static boolean finUserId(String AccountID)
+	public  Profiles finUserId(String AccountID)
 	{
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -92,15 +142,16 @@ public class Profile_DAO {
 
 		Query query = session.createQuery(" from Profiles where accountId =: ID ");
 		query.setParameter("ID", AccountID);
-		
+		Profiles pro = (Profiles) query.uniqueResult();
 		session.getTransaction().commit();
-		return true;
+		return pro;
 		}catch( Exception ex ){
 			ex.printStackTrace();
 		}finally{
 			session.close();
 		}
-		return false;
+		return null;
+		
 
 	}
 

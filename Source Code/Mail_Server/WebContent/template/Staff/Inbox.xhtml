@@ -65,7 +65,8 @@
 								</a>
 							</h:column>
 							<h:column>
-								<small class="pull-right text-muted">#{lst.sendDate}</small>
+								
+								<h:outputText value="#{lst.sendDate}" styleClass="pull-right text-muted"><f:convertDateTime type="date" pattern="dd-MM-yyyy"/></h:outputText>
 							</h:column>
 
 						</h:dataTable>
