@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Home Admin</title>
+
+	<link rel="stylesheet" type="text/css"
+		href="/Mail_Server/resources/css/bootstrap.min.css" />
+
+
+	<!-- MetisMenu CSS -->
+	<link
+		href="/Mail_Server/resources/css/plugins/metisMenu/metisMenu.min.css"
+		rel="stylesheet" />
+
+	<!-- Timeline CSS -->
+	<link href="/Mail_Server/resources/css/plugins/timeline.css"
+		rel="stylesheet" />
+
+	<!-- Custom CSS -->
+	<link href="/Mail_Server/resources/css/sb-admin-2.css" rel="stylesheet" />
+
+	<!-- Morris Charts CSS -->
+	<link href="/Mail_Server/resources/css/plugins/morris.css"
+		rel="stylesheet" />
+
+	<!-- Custom Fonts -->
+	<link rel="stylesheet" type="text/css"
+		href="/Mail_Server/resources/css/font-awesome.min.css" />
+
+	<style type="text/css">
+/*-------------------------
+         MAIL INBOX
+--------------------------*/
+.mail-box {
+	border-spacing: 0;
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	height: 100%;
+}
+
+.mail-box>aside, .mail-box>section {
+	display: table-cell;
+	float: none;
+	height: 100%;
+	vertical-align: top;
+}
+
+.mail-nav {
+	display: table-cell;
+	float: none;
+	height: 100%;
+	vertical-align: top;
+	width: 240px;
+}
+
+.mail-nav-bg-color {
+	background: #d1d5e1;
+}
+
+.mail-box-info {
+	background: #fff;
+	padding: 15px;
+}
+
+.mail-nav h4 {
+	margin: 0;
+	padding: 15px;
+	background: #5c6e8a;
+	color: #fff;
+}
+
+.mail-nav-body {
+	padding: 15px;
+}
+
+.mail-nav footer {
+	background: #b8bbc5;
+	border-top: none;
+	margin-top: 20px;
+}
+
+.mail-nav footer .btn {
+	border: none;
+}
+
+a.btn-compose {
+	background: #65CEA7;
+	color: #fff;
+	width: 100%;
+	margin: 10px 0;
+}
+
+a:hover.btn-compose {
+	background: #52a888;
+	color: #fff;
+}
+
+.mail-navigation {
+	margin-top: 15px;
+}
+
+.mail-navigation li a i {
+	padding-right: 10px;
+}
+
+.mail-navigation li a {
+	color: #5c6e8a;
+}
+
+.mail-navigation li a:hover {
+	color: #fff;
+}
+
+.mail-navigation>li.active>a, .mail-navigation>li.active>a:hover,
+	.mail-navigation>li.active>a:focus {
+	background: #5c6e8a;
+	color: #fff;
+}
+
+ul.labels-info li h5 {
+	color: #fff;
+	background: #839dc5;
+	font-size: 15px;
+	margin: 10px -15px;
+	padding: 15px;
+	text-transform: uppercase;
+}
+
+ul.labels-info li a {
+	border-radius: 0;
+	color: #707278;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+ul.labels-info li a i {
+	padding-right: 10px;
+}
+
+.nav.nav-pills.nav-stacked.labels-info p {
+	color: #85888f;
+	font-size: 11px;
+	margin-bottom: 0;
+	padding: 0 22px;
+}
+
+ul.labels-info li a:hover, ul.labels-info li a:focus {
+	background: rgba(0, 0, 0, 0);
+	color: #5c6e8a;
+}
+
+.mail-box-info {
+	position: relative;
+}
+
+.mail-box-info .header {
+	background: #D1D5E1;
+	margin: -15px;
+	padding: 10px 15px;
+	color: #fff;
+}
+
+.mail-box-info .mail-list {
+	margin-top: 30px;
+}
+
+.mail-box-info .mail-list li a {
+	font-size: 13px;
+	color: #535351;
+	text-decoration: none;
+}
+
+.mail-box-info .mail-list li a:hover {
+	color: #1b2128;
+}
+
+.mail-box-info .mail-list li a.thumb {
+	width: 22px;
+	margin-right: 10px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+}
+
+.mail-box-info .mail-list li a.thumb img {
+	height: auto;
+	max-width: 100%;
+}
+
+.mail-box-info .mail-list li .chk {
+	margin-right: 15px;
+}
+
+.mail-list {
+	overflow-x: hidden;
+	overflow-y: auto;
+	height: 657px;
+}
+
+.mail-list .list-group-item {
+	border-radius: 0;
+	-webkit-border-radius: 0;
+}
+
+.mail-box-info header h4 {
+	margin: 5px 0;
+	color: #5C6E8A;
+}
+
+.compose-mail {
+	width: 100%;
+	display: inline-block;
+	position: relative;
+}
+
+.compose-mail .compose-options {
+	color: #979797;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 14px;
+	position: absolute;
+	right: 10px;
+	top: 7px;
+}
+
+.compose-options a {
+	color: #5C6E8A;
+}
+
+.compose-mail input, .compose-mail input:focus {
+	border: none;
+	padding: 0;
+	width: 80%;
+	float: left;
+}
+
+.compose-mail .form-group {
+	border: 1px solid #eaebee;
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 0;
+}
+
+.compose-mail .form-group label {
+	line-height: 34px;
+	width: 10%;
+	float: left;
+	padding-left: 10px;
+	margin-bottom: 0;
+	background: #eaebee;
+	margin-right: 10px;
+}
+
+.compose-editor input {
+	margin-top: 15px;
+}
+
+.compose-editor {
+	margin-top: 35px;
+	margin-bottom: 15px;
+	display: inline-block;
+	width: 100%;
+}
+
+.compose-btn {
+	float: left;
+}
+
+.compose-editor textarea {
+	border-color: #eaebee;
+}
+
+.mail-sender, .attachment-mail {
+	width: 100%;
+	display: inline-block;
+	margin: 0 0 20px 0;
+	border-bottom: 1px solid #EFF2F7;
+	padding: 10px 0;
+}
+
+.attachment-mail ul li .links a {
+	font-size: 11px;
+}
+
+.mail-sender img {
+	width: 30px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.mail-sender .date {
+	line-height: 30px;
+	margin-bottom: 0;
+	text-align: right;
+}
+
+.view-mail a, .attachment-mail a:hover {
+	color: #65CEA7;
+}
+
+.attachment-mail a {
+	color: #5C6E8A;
+}
+
+.attachment-mail ul li {
+	float: left;
+	width: 100px;
+	margin-right: 15px;
+	margin-top: 15px;
+	list-style: none;
+}
+
+.attachment-mail ul li a.atch-thumb img {
+	width: 100px;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+.attachment-mail ul li a.name span {
+	float: right;
+	color: #5C6E8A;
+	font-size: 11px;
+}
+</style>
+</h:head>
+<h:body>
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html"><h:graphicImage
+					style="width: 70px;height: 47px;float: left;margin-left: 70px;margin-top: -15px;"
+					library="images" name="logotruong1.png" /></a>
+		</div>
+		<!-- /.navbar-header -->
+
+		<ul class="nav navbar-top-links navbar-right">
+
+
+
+
+
+
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+					<i class="fa fa-caret-down"></i>
+			</a>
+				<ul class="dropdown-menu dropdown-user">
+
+					<li><a data-toggle="modal" data-target=".bs-example-modal-lg"><i
+							class="fa fa-cog"></i> Change Password</a></li>
+					<li class="divider"></li>
+					<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
+							Logout</a></li>
+				</ul> <!-- /.dropdown-user --></li>
+			<!-- /.dropdown -->
+		</ul>
+		<!-- /.navbar-top-links -->
+
+		<div class="navbar-default sidebar" role="navigation">
+			<div class="sidebar-nav navbar-collapse">
+				<ul class="nav" id="side-menu">
+					<li class="sidebar-search">
+						<div class="input-group custom-search-form">
+							<input type="text" class="form-control" placeholder="Search..." />
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+							</span>
+						</div> <!-- /input-group -->
+					</li>
+
+					<li class=""><a href=""><i class="fa fa-envelope-o"></i>
+							Email<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level collapse" style="height: 0px;">
+							<li><a href="/Mail_Server/template/Admin/ComposeMail.xhtml">Compose
+									Mail</a></li>
+							<li><a href="/Mail_Server/template/Admin/Inbox.xhtml">Inbox</a></li>
+							<li><a href="/Mail_Server/template/Admin/Sendmail.xhtml">Send
+									Mail</a></li>
+
+						</ul> <!-- /.nav-second-level --></li>
+					<li><a href="/Mail_Server/template/Admin/CreateAcount.xhtml"><i
+							class="fa fa-edit fa-fw"></i> Create Account</a></li>
+					<li><a href=""><i class="fa fa-edit fa-fw"></i> Forms</a></li>
+
+				</ul>
+			</div>
+			<!-- /.sidebar-collapse -->
+		</div>
+		<!-- /.navbar-static-side --> </nav>
+
+		<div id="page-wrapper" style="min-height: 702px; overflow: hidden;">
+			<div class="row">
+				<div style="width: 105%; margin-left: -30px;" class="col-lg-12">
+					<section class="mail-box-info"> <ui:insert name="content">
+
+					</ui:insert> </section>
+				</div>
+
+			</div>
+			<!-- /.row -->
+			<!-- /.row -->
+		</div>
+		<div id="change" class="modal fade bs-example-modal-lg in"
+			tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div style="border-radius: 5px; width: 400px; margin: 120px auto;"
+					class="modal-content">
+
+					<div
+						style="border-top-left-radius: 5px; border-top-right-radius: 5px"
+						class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myLargeModalLabel">Change
+							Password!!!</h4>
+					</div>
+					<h:form>
+						<div class="modal-body">
+							<label>The old password</label><br />
+							<h:inputSecret styleClass="form-control"></h:inputSecret>
+							<br /> <label>New password</label><br />
+							<h:inputSecret styleClass="form-control"></h:inputSecret>
+							<br /> <label>Enter the password</label><br />
+							<h:inputSecret styleClass="form-control"></h:inputSecret>
+							<br />
+							<h:messages></h:messages>
+							<br />
+
+							<h:commandButton id="ggg" type="submit" value="Change Password"
+								styleClass="btn btn-primary"
+								style="margin-left: 228px; margin-top: -10px;" />
+
+						</div>
+					</h:form>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+
+			</div>
+
+		</div>
+		<!-- /#page-wrapper -->
+		<!-- jQuery Version 1.11.0 -->
+		<h:outputScript library="js" name="jquery-1.11.1.js" />
+
+		<!-- Bootstrap Core JavaScript -->
+		<h:outputScript library="js" name="bootstrap.min.js" />
+
+
+		<!-- Metis Menu Plugin JavaScript -->
+		<h:outputScript library="js/plugins/metisMenu" name="metisMenu.min.js" />
+
+
+		<!-- Morris Charts JavaScript -->
+		<h:outputScript library="js/plugins/morris" name="raphael.min.js" />
+		<h:outputScript library="js/plugins/morris" name="morris.min.js" />
+
+
+
+		<!-- Custom Theme JavaScript -->
+		<h:outputScript library="js" name="sb-admin-2.js" />
+
+
+		<script>
+			$(document).ready(function() {
+				$(".#change").click(function() {
+					alert("aaaaaaaaaaaaaa");
+				});
+			});
+		</script>
+
+	</div>
+</h:body>
+</h:html>

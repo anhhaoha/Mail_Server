@@ -41,6 +41,26 @@
 	height: 50px;
 }
 
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	border-right: none;
+	border-top: none;
+	border-bottom: none;
+	cursor: pointer;
+	width: 16px;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0 3px;
+	width: 28px;
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-list {
+	padding: 0.4em;
+	border: 0 none;
+	font-family: cursive;
+}
+
 td, th {
 	padding: 6px;
 	color: rgb(248, 14, 14);
@@ -186,24 +206,24 @@ td, th {
 				</h:commandButton>
 			</h:form>
 			<h:form>
-			<div style="height: 50px;" class="menu-right">
-				<ul class="notification-menu">
+				<div style="height: 50px;" class="menu-right">
+					<ul class="notification-menu">
 
-					<li><a href="" class="btn btn-default dropdown-toggle"
-						data-toggle="dropdown"> <h:graphicImage library="images"
-								name="user-avatar.png" /> #{mailBean.users.displayName} <span
-							class="caret"></span></a>
-						<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-							<li><a data-toggle="modal" data-target=".changeprofile"><i
-									class="fa fa-users"></i> Change Profile</a></li>
-							<li><a data-toggle="modal"
-								data-target=".bs-example-modal-lg"><i class="fa fa-cog"></i>
-									Change Password</a></li>
-							<li><h:commandButton id="uuu" action="#{userBean.logout}"
-									value="&#32; &#32; &#32; LogOut" /></li>
-						</ul></li>
-				</ul>
-			</div>
+						<li><a href="" class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown"> <h:graphicImage library="images"
+									name="user-avatar.png" /> #{mailBean.users.displayName} <span
+								class="caret"></span></a>
+							<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+								<li><a data-toggle="modal" data-target=".changeprofile"><i
+										class="fa fa-users"></i> Change Profile</a></li>
+								<li><a data-toggle="modal"
+									data-target=".bs-example-modal-lg"><i class="fa fa-cog"></i>
+										Change Password</a></li>
+								<li><h:commandButton id="uuu" action="#{userBean.logout}"
+										value="&#32; &#32; &#32; LogOut" /></li>
+							</ul></li>
+					</ul>
+				</div>
 			</h:form>
 		</div>
 
@@ -238,7 +258,9 @@ td, th {
 							<ul class="sub-menu-list">
 								<li><a href="/Mail_Server/template/Staff/allStudent.xhtml">
 										All Student</a></li>
-
+								<li><a
+									href="/Mail_Server/template/Staff/SelectAllStudent.xhtml">
+										Select Student</a></li>
 							</ul></li>
 
 

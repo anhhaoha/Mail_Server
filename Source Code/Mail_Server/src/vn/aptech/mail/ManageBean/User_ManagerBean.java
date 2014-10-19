@@ -74,13 +74,13 @@ public class User_ManagerBean {
 			} else {
 				if (roleId == 3)
 
-					return "DemoClass"; 	
+					return "/template/Student/Inbox"; 	
 
 			}
 
 			if (roleId == 1) {
 
-				return "Admin";
+				return "/template/Admin/Inbox";
 			}
 
 			msg = "Success!";

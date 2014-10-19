@@ -80,6 +80,15 @@
 .uaa:HOVER {
 	text-decoration: none;
 }
+
+a:focus, a:active, a:hover {
+	outline: none;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	color: #353F4F;
+	text-decoration: none;
+}
 </style>
 </h:head>
 <h:body class="sticky-header">
@@ -101,23 +110,23 @@
 				</h:commandButton>
 			</h:form>
 			<h:form>
-			<div class="menu-right">
-				<ul class="notification-menu">
-					<li><a href="" class="btn btn-default dropdown-toggle"
-						data-toggle="dropdown"> <h:graphicImage library="images"
-								name="user-avatar.png" /> #{mailBean.users.displayName} <span
-							class="caret"></span></a>
-						<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-							<li><a data-toggle="modal" data-target=".changeprofile"><i
-									class="fa fa-users"></i> Change Profile</a></li>
-							<li><a data-toggle="modal"
-								data-target=".bs-example-modal-lg"><i class="fa fa-cog"></i>
-									Change Password</a></li>
-							<li><h:commandButton id="uuu" action="#{userBean.logout}"
-									value="&#32; &#32; &#32; LogOut" /></li>
-						</ul></li>
-				</ul>
-			</div>
+				<div style="height: 50px;" class="menu-right">
+					<ul class="notification-menu">
+						<li><a href="" class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown"> <h:graphicImage library="images"
+									name="user-avatar.png" /> #{mailBean.users.displayName} <span
+								class="caret"></span></a>
+							<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+								<li><a data-toggle="modal" data-target=".changeprofile"><i
+										class="fa fa-users"></i> Change Profile</a></li>
+								<li><a data-toggle="modal"
+									data-target=".bs-example-modal-lg"><i class="fa fa-cog"></i>
+										Change Password</a></li>
+								<li><h:commandButton id="uuu" action="#{userBean.logout}"
+										value="&#32; &#32; &#32; LogOut" /></li>
+							</ul></li>
+					</ul>
+				</div>
 			</h:form>
 		</div>
 

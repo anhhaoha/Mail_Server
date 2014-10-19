@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+</h:head>
+<h:body>
+	<ui:composition template="/template/Staff/HomeStaff.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<p:selectOneMenu style="width: 300px;font-family: cursive;"
+					value="#{Profile.className}">
+
+					<f:selectItems value="#{Profile.classProfiles}" var="t"></f:selectItems>
+					<f:selectItem itemLabel="asdfg" itemValue="t.class_"></f:selectItem>
+				</p:selectOneMenu>
+
+				<h:commandButton
+					style="position: relative;left: 15px;top: -9px;height: 30px;width: 61px;"
+					styleClass="btn btn-success " value="Select"
+					action="#{Profile.showStudent}" />
+				<br />
+
+
+				<section class="mail-list">
+				<ul class="list-group ">
+					<c:if test="not #{Profile.pro}">
+						<h:outputText value="khong co mail"></h:outputText>
+					</c:if>
+					<c:otherwise>
+						<h:dataTable class="table table-hover" value="#{Profile.pro}"
+							var="lst">
+
+							<h:column>
+								<h:selectBooleanCheckbox
+									value="#{Profile.checked[lst.accountId]}"></h:selectBooleanCheckbox>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Name" />
+								</f:facet>
+							#{lst.fullName}
+							</h:column>
+							<h:column style="width: 220px;">
+								<f:facet name="header">
+									<h:outputText value="Address" />
+								</f:facet> #{lst.address}
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Sex" />
+								</f:facet>
+			#{lst.gender}
+			</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Phone" />
+								</f:facet>
+			#{lst.phone}
+			</h:column>
+
+						</h:dataTable>
+						<h:commandButton styleClass="btn btn-success" value="Send Mail" action="#{Profile.getSendMail}" />
+					</c:otherwise>
+				</ul>
+				</section>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

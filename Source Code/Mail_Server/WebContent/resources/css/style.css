@@ -690,33 +690,9 @@ h5.left-nav-title {
 	transition: all 0.2s ease-out 0s;
 }
 
-.notification-menu .dropdown-menu li input {
-	color: #fff;
-	font-size: 13px;
-	padding: 7px 10px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	-moz-transition: all 0.2s ease-out 0s;
-	-webkit-transition: all 0.2s ease-out 0s;
-	transition: all 0.2s ease-out 0s;
-	background: #65CEA7;
-	border: none;
-	width: 100%;
-	text-align: left;
-}
-
 .notification-menu .dropdown-menu li a:hover {
 	background: #2a323f;
 	color: #fff;
-}
-
-.notification-menu .dropdown-menu li input:hover {
-	background: #2a323f;
-	color: #fff;
-	border: none;
-	width: 100%;
-	text-align: left;
 }
 
 .notification-menu .dropdown-menu li i {
@@ -2743,193 +2719,105 @@ input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:fo
 .spinner-buttons
 
 
-
-
-
-
 .btn-group-vertical
 >
 .btn
 
 
-
-
-
-
 :last-child
-
-
-
-
 
 
 :not
 
-
-
  
-
-
 
 (
 :first-child
 
-
-
  
-
-
 
 )
 {
 border-radius
 
 
-
-
-
-
 :
 
-
-
  
-
-
 
 0
 0
 4
 px
 
-
-
  
-
-
 
 0;
 -webkit-border-radius
 
 
-
-
-
-
 :
 
-
-
  
-
-
 
 0
 0
 4
 px
 
-
-
  
-
-
 
 0;
 }
 .spinner-buttons
 
 
-
-
-
-
 .btn-group-vertical
 >
 .btn
 
 
-
-
-
-
 :first-child
-
-
-
-
 
 
 :not
 
-
-
  
-
-
 
 (
 :last-child
 
-
-
  
-
-
 
 )
 {
 border-radius
 
 
-
-
-
-
 :
 
-
-
  
-
-
 
 0
 4
 px
 
-
-
  
-
-
 
 0
 0;
 -webkit-border-radius
 
 
-
-
-
-
 :
 
-
-
  
-
-
 
 0
 4
 px
 
-
-
  
-
-
 
 0
 0;
