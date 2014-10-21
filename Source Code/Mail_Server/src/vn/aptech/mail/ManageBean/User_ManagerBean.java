@@ -24,7 +24,7 @@ public class User_ManagerBean {
 	Users user;
 	String oldPass;
 	String enterPass;
-	
+	Users us;
 	public Users getUser() {
 		return user;
 	}
@@ -32,12 +32,15 @@ public class User_ManagerBean {
 	public void setUser(Users user) {
 		this.user = user;
 	}
+	
+	
+	
+	public Users getUs() {
+		return us;
+	}
 
-	public User_ManagerBean() {
-		super();
-		user = new Users();
-		
-
+	public void setUs(Users us) {
+		this.us = us;
 	}
 
 	public String getOldPass() {
@@ -54,6 +57,12 @@ public class User_ManagerBean {
 
 	public void setEnterPass(String enterPass) {
 		this.enterPass = enterPass;
+	}
+	public User_ManagerBean() {
+		super();
+		user = new Users();
+		us=(Users) HttpUtils.getFromSession("users");
+
 	}
 
 	public String login_Student() {
@@ -80,7 +89,7 @@ public class User_ManagerBean {
 
 			if (roleId == 1) {
 
-				return "/template/Admin/Inbox";
+				return "Admin";
 			}
 
 			msg = "Success!";
@@ -160,8 +169,8 @@ public class User_ManagerBean {
 		u =(Users) HttpUtils.getFromSession("users");
 		
 		
-		u.setDisplayName(user.getDisplayName());
-		u.setEmail(user.getEmail());
+		u.setDisplayName(us.getDisplayName());
+		u.setEmail(us.getEmail());
 		
 
 		if (User_DAO.getInstance().update_User(u)) {

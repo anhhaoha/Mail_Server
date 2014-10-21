@@ -50,8 +50,35 @@ public class Mail_ManageBean {
 	private String statusMessage;
 	private List<Users> selected;
 	private String txt1;
+	private List<Mail> listMailInboxSearch;
+	private String userMail;
+	private List<Mail> listMailSearch;
 	
 	
+	public List<Mail> getListMailSearch() {
+		return listMailSearch;
+	}
+
+	public void setListMailSearch(List<Mail> listMailSearch) {
+		this.listMailSearch = listMailSearch;
+	}
+
+	public String getUserMail() {
+		return userMail;
+	}
+
+	public void setUserMail(String userMail) {
+		this.userMail = userMail;
+	}
+
+	public List<Mail> getListMailInboxSearch() {
+		return listMailInboxSearch;
+	}
+
+	public void setListMailInboxSearch(List<Mail> listMailInboxSearch) {
+		this.listMailInboxSearch = listMailInboxSearch;
+	}
+
 	public List<Users> getSelected() {
 		return selected;
 	}
@@ -174,8 +201,11 @@ public class Mail_ManageBean {
 		mail=new Mail();
 		listSendMail = Mail_DAO.getInstance().findMailByAccountSendId(users.getAccountId());
 		paginatorSendMail = new RepeatPaginator(listSendMail);
+//		listMailInboxSearch=new ArrayList<Mail>();
 		// count mail
 //		countMail();
+		listMailSearch =new ArrayList<Mail>();
+		
 	}
 	
 	public Long getCountMail() {
@@ -253,6 +283,13 @@ public class Mail_ManageBean {
 		return filteredThemes;
 	}
 	
+	
+	public String searchMail()
+	{
+		listMailInboxSearch =Mail_DAO.getInstance().searchMailByUsername("William");
+
+		return null;
+	}
 	
 	public String insert_Mail()
 	{
@@ -353,31 +390,6 @@ public class Mail_ManageBean {
 	
 	public String insertMany()
 	{
-//	List<Profiles> list=new ArrayList<Profiles>();
-//	list = (List<Profiles>) HttpUtils.getFromSession("listProfile");
-//	String msg = null;
-//	for(Profiles pro:list)
-//	{
-//		users = (Users) HttpUtils.getFromSession("users");
-//		Users u = new Users();
-//		u.setAccountId(users.getAccountId());
-//		Users ur = new Users();
-//		ur.setAccountId(pro.getAccountId());
-//		mail.setUsersByAccountSendId(u);
-//
-//		mail.setUsersByAccountReceiveId(ur);
-//
-//		if (Mail_DAO.getInstance().insertMail(mail)) {
-//		
-//			msg = "Created Successfully!";
-//			
-//		}else
-//		{
-//			msg = "Fail!";
-//		}
-//
-//	}
-		
 		
 		Attachs attachs =new Attachs();
 		String msg=null;
@@ -523,18 +535,7 @@ public class Mail_ManageBean {
 			insert_Mail();
 		}
 		
-		
-//		m.setMailId(18);
-//		attachs.setMail(m);
-//		if(Attachs_DAO.getInstance().insertAttachs(attachs))
-//		{
-//		HttpUtils.deleteFromSession("savePart");
-//			 msg = "Created Successfully!";
-//			 
-//        }else{
-//             msg = "Error. Please check again!";
-//        
-//		}
+
 
 
 FacesMessage massage = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
@@ -543,6 +544,7 @@ FacesContext.getCurrentInstance().addMessage(null, massage);
 		
 	}
 	
+
 	
 	@FacesConverter(forClass=Users.class)
 	public class UserConverter implements Converter {
@@ -564,27 +566,30 @@ FacesContext.getCurrentInstance().addMessage(null, massage);
 		
 		
 	}
-//	public String getSearchMail() {
+//	public String SearchMail() {
 //
-//		listMailInboxSearch = new ArrayList<Mail>();
-//		listSendMailSearch = new ArrayList<Mail>();
-//		searchResult = Mail_DAO.getInstance().searchMailByUsername(username);
-//		for (Mail mail : searchResult) {
-//			if (mail.getUsersByAccountReceiveId().getUsername()
-//					.equals("William") && mail.getUsersByAccountSendId().getUsername().equals(username)) {
-//				
-//				listMailInboxSearch.add(mail);
-//			}
-//			if (mail.getUsersByAccountSendId().getUsername()
-//					.equals("William") && mail.getUsersByAccountReceiveId().getUsername().equals(username)) {
-//				
-//				listSendMailSearch.add(mail);
-//			}
-//		}
+////		listMailInboxSearch = new ArrayList<Mail>();
+////		listSendMailSearch = new ArrayList<Mail>();
+////		searchResult = Mail_DAO.getInstance().searchMailByUsername(users.getDisplayName());
+//	
+//		listMailInboxSearch= Mail_DAO.getInstance().searchMailByUsername(username);
+////		for (Mail mail : listMail) {
+////			if (mail.getUsersByAccountReceiveId().getUsername()
+////					.equals(username) && mail.getUsersByAccountSendId().getUsername().equals(users.getDisplayName())) {
+////				
+////				listMailInboxSearch.add(mail);
+////			}
+////			if (mail.getUsersByAccountSendId().getUsername()
+////					.equals(username) && mail.getUsersByAccountReceiveId().getUsername().equals(users.getDisplayName())) {
+////				
+////				listSendMail.add(mail);
+////			}
+////		}
 //
-//		System.out.println(searchResult.size());
-//		return "HomeStudent";
+//		System.out.println(listMailInboxSearch.size());
 //
+//		return "/template/Staff/viewSearch";
+//	
 //	}
 	// public String getAbc() {
 	// System.out.println(mailSelected.length);

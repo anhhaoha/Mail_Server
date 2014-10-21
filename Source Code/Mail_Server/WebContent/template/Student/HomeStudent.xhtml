@@ -100,14 +100,14 @@ a:focus, a:active, a:hover {
 			<h:graphicImage
 				style="width: 70px;height: 47px;float: left;margin-left: 92px;"
 				library="images" name="logotruong.jpg" />
-			<h:form class="searchform" action="index.html" method="post">
-				<h:inputText style="margin-left: 107px; width: 400px;"
+			<h:form class="searchform" >
+				<h:inputText style="margin-left: 107px; width: 400px;" value="#{mailBean.username}"
 					styleClass="form-control" p:placeholder="Search here...">
 				</h:inputText>
 				<h:commandButton style="width: 100px;"
-					styleClass="btn btn-danger btn-cons btn-add" value="Search">
-
+					styleClass="btn btn-danger btn-cons btn-add" value="Search" action="#{mailBean.Search}">
 				</h:commandButton>
+				
 			</h:form>
 			<h:form>
 				<div style="height: 50px;" class="menu-right">
@@ -124,6 +124,7 @@ a:focus, a:active, a:hover {
 										Change Password</a></li>
 								<li><h:commandButton id="uuu" action="#{userBean.logout}"
 										value="&#32; &#32; &#32; LogOut" /></li>
+								
 							</ul></li>
 					</ul>
 				</div>
@@ -246,10 +247,10 @@ a:focus, a:active, a:hover {
 						<div class="modal-body">
 							<label>Display Name</label><br />
 							<h:inputText styleClass="form-control"
-								value="#{userBean.user.displayName}"></h:inputText>
+								value="#{userBean.us.displayName}"></h:inputText>
 							<br /> <label>Email</label><br />
 							<h:inputText styleClass="form-control"
-								value="#{userBean.user.email}" />
+								value="#{userBean.us.email}" />
 							<br /> <br />
 
 							<h:commandButton action="#{userBean.changeProfile}"
@@ -277,6 +278,8 @@ a:focus, a:active, a:hover {
 	<h:outputScript library="js" name="DT_bootstrap.js" />
 	<h:outputScript library="js" name="dynamic_table_init.js" />
 	<h:outputScript library="js" name="scripts.js" />
+	
+	<ui:insert name="script"></ui:insert>
 </h:body>
 
 </h:html>

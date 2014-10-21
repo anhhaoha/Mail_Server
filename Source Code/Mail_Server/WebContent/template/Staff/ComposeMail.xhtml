@@ -10,7 +10,7 @@
 	<title>ComposeMail Student</title>
 </h:head>
 <h:body>
-	<ui:composition template="/template/Staff/HomeStaff.xhtml">
+	<ui:composition template="/template/Student/HomeStudent.xhtml">
 		<ui:define name="content">
 			<header class="header">
 			<div class="btn-toolbar">
@@ -20,49 +20,99 @@
 			</header>
 			<section class="mail-list">
 			<div class="compose-mail">
-				<h:form role="form-horizontal" method="post">
+				<h:form role="form-horizontal" enctype="multipart/form-data" method="post" id="f">
 					<div class="form-group">
-						<label for="to" class="">To:</label> <input type="text"
-							tabindex="1" id="to" class="form-control" />
-
+					
+						<label for="to" class="">To:</label>
+						
+        <p:autoComplete styleClass="form-control" tabindex="1" id="themes" multiple="true" value="#{mailBean.selected}" completeMethod="#{mailBean.completeTheme}"
+                        var="theme" itemLabel="#{theme.username}" converter="UserConverter" itemValue="#{theme}" forceSelection="true">
+            <p:column style="width:10%">
+                <h:outputText styleClass="ui-theme ui-theme-#{theme.username}" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{theme.username}" />
+            </p:column>
+        </p:autoComplete>		
 						<div class="compose-options">
 							<a
 								onclick="$(this).hide(); $('#cc').parent().removeClass('hidden'); $('#cc').focus();"
-								href="javascript:;">Cc</a>
-								
+								href="javascript:;">Cc</a> <a
+								onclick="$(this).hide(); $('#bcc').parent().removeClass('hidden'); $('#bcc').focus();"
+								href="javascript:;">Bcc</a>
 						</div>
 					</div>
 
 					<div class="form-group hidden">
-						<label for="cc" class="">Cc:</label> <input type="text"
-							tabindex="2" id="cc" class="form-control" />
+						<label for="cc" class="">Cc:</label>
+						<h:inputText styleClass="form-control" tabindex="2"
+							id="cc" />
 					</div>
 
-					
+					<div class="form-group hidden">
+						<label for="bcc" class="">Bcc:</label> <input type="text"
+							tabindex="2" id="bcc" class="form-control" />
+					</div>
 
 					<div class="form-group">
-						<label for="subject" class="">Subject:</label> <input type="text"
-							tabindex="1" id="subject" class="form-control" />
+						<label for="subject" class="">Subject:</label>
+						<h:inputText value="#{mailBean.mail.title}"
+							styleClass="form-control" tabindex="1" id="subject" />
 					</div>
-					
-					<hr/>
-					<p:editor></p:editor>
 
-				</h:form>
-
+				<hr />
+				<script src="//cdn.ckeditor.com/4.4.5/full/ckeditor.js"></script>
+				<textarea name="editor1"></textarea>
+				<script>
+					CKEDITOR.replace('editor1');
+				</script>
+				<h:inputHidden id="ipHidden" value="#{mailBean.mail.content}"></h:inputHidden>
 				<div style="margin-top: 30px; margin-right: 12px;"
 					class="compose-btn pull-right">
-				<h:commandButton styleClass="btn btn-primary btn-sm" value="Send"
-						style="height: 40px;margin-left: -160px;width: 60px;"></h:commandButton>
-					<h:commandButton styleClass="btn btn-danger btn-sm" value="Delete"
-						style="height: 40px;width: 60px;margin-left: -80px;"></h:commandButton>
+					<h:commandButton onclick="getDataEditor()" action="#{mailBean.insert()}"
+						styleClass="btn btn-primary btn-sm" value="Save" />
+
+					<button class="btn btn-sm btn-default">
+						<i class="fa fa-times"></i> Delete
+					</button>
 				</div>
+				
+
+				<div>
+				<h:messages></h:messages>
+					<h:inputFile id="file" label="file" value="#{mailBean.part}" >
+							<!-- FileUploadValidator for file validation -->
+							<f:validator validatorId="FileUploadValidator" />
+						</h:inputFile>
+
+						<h:message style="color: red" for="file" />
+						<br />
+
+						<h:commandButton id="submit" action="#{mailBean.uploadFile}"
+							value="upload file" />
+						<br />
+						<h:outputText value="#{mailBean.statusMessage}"
+          rendered="#{not empty mailBean.statusMessage}" />
+					
+				</div>
+				</h:form>
 			</div>
+			
 			</section>
 
 
-
-
+		</ui:define>
+		
+		<ui:define name="script">
+			<script>
+			
+			function getDataEditor() {
+				var value = CKEDITOR.instances.editor1.getData();
+				$('#f\\:ipHidden').val(value);
+				
+			}
+			</script>
 		</ui:define>
 	</ui:composition>
 

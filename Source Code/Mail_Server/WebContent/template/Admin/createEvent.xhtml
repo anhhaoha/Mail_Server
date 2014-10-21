@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:p="http://primefaces.org/ui"
+	 	xmlns:f="http://java.sun.com/jsf/core"
+	 	  xmlns:rich="http://richfaces.org/rich">
+	
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+		
+	<h:form enctype="multipart/form-data">
+		           
+		    <h:inputText value="#{eventBean.event.title}"/>
+		    <br/>
+		    <h:inputTextarea value="#{eventBean.event.description}"/>
+		    <br/>
+		    <h:inputTextarea value="#{eventBean.event.content}"/>
+		    <br/>
+		    <h:inputText id="date" value="#{eventBean.date}" 
+			size="20" required="true"
+			label="Receipt Date" >
+			<f:convertDateTime pattern="yyyy-MM-dd" />
+		  	</h:inputText>
+		  	<br/>
+		  	<h:inputFile id="file" label="file" value="#{eventBean.part}" >
+							<!-- FileUploadValidator for file validation -->
+							<f:validator validatorId="FileUploadValidator" />
+						</h:inputFile>
+
+						<h:message errorStyle="color:red" for="file" />
+						<br />
+
+						<h:commandButton id="submit" action="#{eventBean.uploadFile}"
+							value="upload file" />
+						<br />
+						<h:outputText value="#{eventBean.statusMessage}"
+          rendered="#{not empty eventBean.statusMessage}" />
+		  	<br/>
+		  	<h:message for="date" style="color:red" />
+		  	<br/>
+		    <h:commandButton value="Create" action="#{eventBean.createEvent}" id="sumit" />
+		    <h:messages ></h:messages>       
+		           
+	</h:form>
+
+</h:body>
+</html>
